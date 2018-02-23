@@ -2,10 +2,12 @@ import { connect } from 'react-redux'
 import Component from './Component'
 
 const mapStateToProps = (state, ownProps) => {
-  const data = state.section.byId.find(it => it.id === ownProps.id)
+  const section = state.section.byId.find(
+    it => it.id === ownProps.id)
+  const problems = state.problem.byId.filter(
+    it => section.problems.includes(it.id))
   return {
-    name: data.name,
-    problems: data.problems
+    section, problems
   }
 }
 

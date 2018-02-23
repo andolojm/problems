@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default ({name, problems}) => (
+export default ({section, problems}) => (
   <div>
-    Section {name}
+    <h2>Section {section.name}</h2>
+    <div>
+      {problems.map(it => (<p key={it.id}>- {it.text}</p>))}
+    </div>
   </div>
 )

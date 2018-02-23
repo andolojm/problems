@@ -1,15 +1,19 @@
-import { ADD_GROUP, CHANGE_GROUP_INPUT_TEXT, CHANGE_PROBLEM_INPUT_TEXT } from './actions'
+import {
+  ADD_GROUP, ADD_PROBLEM, CHANGE_GROUP_INPUT_TEXT,
+  CHANGE_PROBLEM_INPUT_TEXT,
+  CHANGE_PROBLEM_GROUP_SELECTION
+} from './actions'
 
 const initState = {
   groupInputText: '',
   problemInputText: '',
-  problemGroupSelectionId: '',
+  problemGroupSelectionId: 'section1',
   section: {
     byId: [
       {
         id: 'section1',
         name: 'General',
-        problems: [1]
+        problems: ['problem1']
       }
     ],
     allIds: ['section1']
@@ -28,23 +32,39 @@ const initState = {
 export default (state = initState, action) => {
   switch (action.type) {
     case ADD_GROUP:
-      const newId = generateId(state, "section")
-      const obj = Object.assign({}, state, {
-        groupInputText: '',
+      const newSectionId = generateId(state, "section")
+      return Object.assign({}, state, {
         section: {
-          allIds: [...state.section.allIds, newId],
+          allIds: [...state.section.allIds, newSectionId],
           byId: [...state.section.byId, {
-            id: newId,
+            id: newSectionId,
             name: state.groupInputText,
             problems: []
           }]
         }
       })
-      console.log(obj)
-      return obj
+    case ADD_PROBLEM:
+      const newProblemId = generateId(state, "problem")
+      state.section.byId.find(
+        it => it.id === state.problemGroupSelectionId)
+        .problems.push(newProblemId)
+
+      return Object.assign({}, state, {
+        problem: {
+          allIds: [...state.problem.allIds, newProblemId],
+          byId: [...state.problem.byId, {
+            id: newProblemId,
+            text: state.problemInputText,
+          }]
+        }
+      })
     case CHANGE_GROUP_INPUT_TEXT:
       return Object.assign({}, state, {
         groupInputText: action.value
+      })
+    case CHANGE_PROBLEM_GROUP_SELECTION:
+      return Object.assign({}, state, {
+        problemGroupSelectionId: action.groupId
       })
     case CHANGE_PROBLEM_INPUT_TEXT:
       return Object.assign({}, state, {
