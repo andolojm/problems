@@ -1,13 +1,15 @@
 import React from 'react'
+import Button from '../Button/Button'
 
 export default ({section, problems, onProblemClick}) => (
-  <div>
-    <h2>Section {section.name}</h2>
-    <div>
+  <div className="section">
+    <hr className="section-top-hr" />
+    <h2 className="section-header">{section.name}</h2>
+    <div className="section-problems">
       {problems.map(it => (
-        <p key={it.id} id={it.id} onClick={(e) => onProblemClick(e)}>
-          - {it.text}
-        </p>
+        <Button key={it.id} actionId={it.id} onButtonClick={(e) => onProblemClick(e)}>
+          {it.text}
+        </Button>
       ))}
     </div>
   </div>

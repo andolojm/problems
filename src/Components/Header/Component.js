@@ -9,7 +9,7 @@ export default ({
   }) => (
   <div>
     <div>
-      <h1>Problems</h1>
+      <h1 className="header-title">Problems</h1>
     </div>
     <DevUtils />
     <div className="header-input-group">
@@ -23,18 +23,22 @@ export default ({
           ))}
         </select>
       </div>
-      <Button onButtonClick={onNewProblemClick}>
-        Submit new problem
-      </Button>
+      <div className="header-input-group-line">
+        <Button onButtonClick={onNewProblemClick}>
+          Submit new problem
+        </Button>
+      </div>
     </div>
     <div className="header-input-group">
       <div className="header-input-group-line">
         <input type="text" id="groupname" value={groupInputText}
             onChange={e => onGroupTextChange(e.target.value)} />
       </div>
-      <Button onButtonClick={onNewGroupClick}>
-        Submit new group
-      </Button>
+      <div className="header-input-group-line">
+        <Button onButtonClick={onNewGroupClick}>
+          Submit new group
+        </Button>
+      </div>
     </div>
   </div>
 )

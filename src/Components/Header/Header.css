@@ -1,17 +1,22 @@
+.header-title {
+  text-align: right;
+  padding: 10px;
+  font-size: 210%;
+}
+
 .header-input-group {
-  background-color: white;
   margin: 25px 0;
 }
 
 .header-input-group-line {
   width: 100%;
+  max-width: 300px;
+  margin: auto;
 }
 
 .header-input-group-line input,
 .header-input-group-line select {
-  display: block;
-  margin: auto;
-  width: 80%;
+  width: 100%;
 }
 
 .header-input-group-line select {

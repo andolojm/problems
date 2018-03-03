@@ -5,6 +5,7 @@ import { createStore } from 'redux'
 import reducer from './reducer'
 import { Provider } from 'react-redux'
 import StateManager from './state'
+require('./App.css')
 
 let store = createStore(reducer)
 

@@ -4,12 +4,13 @@ require('./Button.css')
 
 const mapStateToProps = (state, ownProps) => {
   return ({
-    text: ownProps.children
+    text: ownProps.children,
+    actionId: ownProps.actionId
   })
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onButtonClick: () => ownProps.onButtonClick()
+  onButtonClick: (e) => ownProps.onButtonClick(e)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

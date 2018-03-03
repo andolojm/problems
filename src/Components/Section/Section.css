@@ -1,0 +1,19 @@
+.section {
+  margin-bottom: 25px;
+}
+
+.section-top-hr {
+  width: 150px;
+  margin: auto;
+}
+
+.section-header {
+  margin: 10px 0 10px 10px;
+  font-size: 180%;
+}
+
+.section-problems {
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+}
