@@ -13,10 +13,10 @@ export default ({
     <div>
       <input type="text" id="problemtext" value={problemInputText}
           onChange={e => onProblemTextChange(e.target.value)} />
-      <select onChange={e => onProblemGroupSelectionChange(e.target.value)}>
+      <select onChange={e => onProblemGroupSelectionChange(e.target.value)}
+          value={problemGroupSelection}>
         {groupList.map(it => (
-          <option key={it.id} value={it.id}
-            selected={it.id === problemGroupSelection}>{it.name}</option>
+          <option key={it.id} value={it.id}>{it.name}</option>
         ))}
       </select>
       <button onClick={onNewProblemClick}>
