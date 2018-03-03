@@ -1,13 +1,15 @@
 import {
   ADD_GROUP, ADD_PROBLEM, CHANGE_GROUP_INPUT_TEXT,
-  CHANGE_PROBLEM_INPUT_TEXT,
-  CHANGE_PROBLEM_GROUP_SELECTION
+  CHANGE_PROBLEM_INPUT_TEXT, OPEN_PROBLEM_MODAL,
+  CHANGE_PROBLEM_GROUP_SELECTION,
+  DELETE_MODAL_PROBLEM
 } from './actions'
 
 const initState = {
   groupInputText: '',
   problemInputText: '',
   problemGroupSelectionId: 'section1',
+  modalProblem: '',
   section: {
     byId: [
       {
@@ -69,6 +71,18 @@ export default (state = initState, action) => {
     case CHANGE_PROBLEM_INPUT_TEXT:
       return Object.assign({}, state, {
         problemInputText: action.value
+      })
+    case OPEN_PROBLEM_MODAL:
+      return Object.assign({}, state, {
+        modalProblem: action.problem
+      })
+    case DELETE_MODAL_PROBLEM:
+      return Object.assign({}, state, {
+        modalProblem: '',
+        problem: {
+          allIds: [...state.problem.allIds.filter((it) => it !== state.modalProblem)],
+          byId: [...state.problem.byId.filter((it => it.id !== state.modalProblem))]
+        },
       })
     default:
       return state

@@ -25,3 +25,15 @@ export const changeProblemInputText = value => ({
   type: CHANGE_PROBLEM_INPUT_TEXT,
   value
 })
+
+export const OPEN_PROBLEM_MODAL = 'OPEN_PROBLEM_MODAL'
+export const openProblemModal = problem => ({
+  type: OPEN_PROBLEM_MODAL,
+  problem
+})
+
+export const DELETE_MODAL_PROBLEM = 'DELETE_MODAL_PROBLEM'
+export const deleteModalProblem = problem => ({
+  type: DELETE_MODAL_PROBLEM,
+  problem
+})

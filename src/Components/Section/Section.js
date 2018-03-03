@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Component from './Component'
+import { openProblemModal } from '../../actions'
 
 const mapStateToProps = (state, ownProps) => {
   const section = state.section.byId.find(
@@ -11,6 +12,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({})
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onProblemClick: (e) => dispatch(openProblemModal(e.target.id))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)
