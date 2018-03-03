@@ -4,6 +4,7 @@ import {
   addGroup, addProblem, changeGroupInputText,
   changeProblemInputText, changeProblemGroupSelection
 } from '../../actions'
+require('./Header.css')
 
 const mapStateToProps = (state, ownProps) => ({
   problemText: state.problemInputText,

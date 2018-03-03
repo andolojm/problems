@@ -1,0 +1,19 @@
+.header-input-group {
+  background-color: white;
+  margin: 25px 0;
+}
+
+.header-input-group-line {
+  width: 100%;
+}
+
+.header-input-group-line input,
+.header-input-group-line select {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+.header-input-group-line select {
+  margin-top: 5px;
+}
