@@ -40,8 +40,23 @@ export default {
     const storedState = retrieveFromLocalStorage()
     return storedState ? storedState : getDefaultState()
   },
+
   persistState: (state) => {
     persistToLocalStorage(state)
     persistToServer(state)
+  },
+
+  // Generate ID for an object of specified prefix
+  // Return <prefix><X> where X = the highest current ID + 1 (or 1, if no current IDs)
+  generateStateId: (state, prefix) => {
+    let id = "1"
+
+    const ids = state[prefix].allIds.map(it => parseInt(it.substring(prefix.length), 10))
+
+    if(ids.length > 0) {
+      id = (Math.max(...ids) + 1).toString()
+    }
+
+    return prefix + id
   }
 }

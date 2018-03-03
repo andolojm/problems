@@ -9,7 +9,7 @@ import StateManager from './state'
 export default (state = StateManager.getState(), action) => {
   switch (action.type) {
     case ADD_GROUP:
-      const newSectionId = generateId(state, "section")
+      const newSectionId = StateManager.generateStateId(state, "section")
       return Object.assign({}, state, {
         problemGroupSelectionId: (state.section.allIds.length > 0
           ? state.problemGroupSelectionId
@@ -24,7 +24,7 @@ export default (state = StateManager.getState(), action) => {
         }
       })
     case ADD_PROBLEM:
-      const newProblemId = generateId(state, "problem")
+      const newProblemId = StateManager.generateStateId(state, "problem")
       state.section.byId.find(
         it => it.id === state.problemGroupSelectionId)
         .problems.push(newProblemId)
@@ -65,9 +65,4 @@ export default (state = StateManager.getState(), action) => {
     default:
       return state
   }
-}
-
-const generateId = (state, prefix) => {
-  return prefix + (1 + Math.max(...state[prefix].allIds
-      .map(it => parseInt(it.substring(it.length - 1), 10)))).toString()
 }
