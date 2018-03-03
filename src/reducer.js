@@ -4,38 +4,16 @@ import {
   CHANGE_PROBLEM_GROUP_SELECTION,
   DELETE_MODAL_PROBLEM
 } from './actions'
+import StateManager from './state'
 
-const initState = {
-  groupInputText: '',
-  problemInputText: '',
-  problemGroupSelectionId: 'section1',
-  modalProblem: '',
-  section: {
-    byId: [
-      {
-        id: 'section1',
-        name: 'General',
-        problems: ['problem1']
-      }
-    ],
-    allIds: ['section1']
-  },
-  problem: {
-    byId: [
-      {
-        id: 'problem1',
-        text: 'Figure this app out'
-      }
-    ],
-    allIds: ['problem1']
-  }
-}
-
-export default (state = initState, action) => {
+export default (state = StateManager.getState(), action) => {
   switch (action.type) {
     case ADD_GROUP:
       const newSectionId = generateId(state, "section")
       return Object.assign({}, state, {
+        problemGroupSelectionId: (state.section.allIds.length > 0
+          ? state.problemGroupSelectionId
+          : newSectionId),
         section: {
           allIds: [...state.section.allIds, newSectionId],
           byId: [...state.section.byId, {
