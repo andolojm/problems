@@ -1,11 +1,35 @@
 #modal {
+  box-sizing: border-box;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 70%;
+  width: 80%;
   height: 200px;
-  margin-left: -35%;
+  margin-left: -40%;
   margin-top: -100px;
+  padding: 20px;
   background-color: white;
-  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-header {
+  font-size: 140%;
+}
+
+.modal-content {
+  margin: 15px 0 0 0;
+}
+
+.modal-action-left {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 40%;
+}
+.modal-action-right {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 40%;
 }
