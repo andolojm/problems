@@ -13,6 +13,29 @@ const getDefaultState = () => ({
   }
 })
 
+const getBootstrappedState = () => ({
+  groupInputText: '',
+  problemInputText: '',
+  problemGroupSelectionId: 'section1',
+  modalProblem: '',
+  section: {
+    byId: [
+      { id: 'section1', name: 'General', problems: ['problem1', 'problem2']},
+      { id: 'section2', name: 'Work', problems: ['problem3']},
+      { id: 'section3', name: 'Home', problems: []},
+    ],
+    allIds: ['section1', 'section2', 'section3']
+  },
+  problem: {
+    byId: [
+      { id: 'problem1', text: 'My taxes are overdue' },
+      { id: 'problem2', text: 'Grandma needs her PC fixed' },
+      { id: 'problem3', text: 'I have not been able to innovate' }
+    ],
+    allIds: ['problem1', 'problem2', 'problem3']
+  }
+})
+
 const retrieveFromLocalStorage = () => {
   try {
     const state = localStorage.getItem('problems_state')
@@ -40,6 +63,10 @@ export default {
     const storedState = retrieveFromLocalStorage()
     return storedState ? storedState : getDefaultState()
   },
+
+  getNullState: () => getDefaultState(),
+
+  getBootstrappedState: () => getBootstrappedState(),
 
   persistState: (state) => {
     persistToLocalStorage(state)

@@ -2,7 +2,7 @@ import {
   ADD_GROUP, ADD_PROBLEM, CHANGE_GROUP_INPUT_TEXT,
   CHANGE_PROBLEM_INPUT_TEXT, OPEN_PROBLEM_MODAL,
   CHANGE_PROBLEM_GROUP_SELECTION,
-  DELETE_MODAL_PROBLEM
+  DELETE_MODAL_PROBLEM, RESET_STATE, BOOTSTRAP_STATE
 } from './actions'
 import StateManager from './state'
 
@@ -62,6 +62,10 @@ export default (state = StateManager.getState(), action) => {
           byId: [...state.problem.byId.filter((it => it.id !== state.modalProblem))]
         },
       })
+    case RESET_STATE:
+      return StateManager.getNullState()
+    case BOOTSTRAP_STATE:
+      return StateManager.getBootstrappedState()
     default:
       return state
   }

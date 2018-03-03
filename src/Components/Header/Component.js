@@ -1,4 +1,5 @@
 import React from 'react'
+import DevUtils from '../DevUtils/DevUtils'
 
 export default ({
     problemInputText, groupInputText, groupList, problemGroupSelection,
@@ -9,6 +10,7 @@ export default ({
     <div>
       <h1>Problems</h1>
     </div>
+    <DevUtils />
     <hr />
     <div>
       <input type="text" id="problemtext" value={problemInputText}

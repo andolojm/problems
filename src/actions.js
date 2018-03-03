@@ -37,3 +37,13 @@ export const deleteModalProblem = problem => ({
   type: DELETE_MODAL_PROBLEM,
   problem
 })
+
+export const RESET_STATE = 'RESET_STATE'
+export const resetState = () => ({
+  type: RESET_STATE,
+})
+
+export const BOOTSTRAP_STATE = 'BOOTSTRAP_STATE'
+export const bootstrapState = () => ({
+  type: BOOTSTRAP_STATE,
+})
