@@ -32,10 +32,16 @@ export const openProblemModal = problem => ({
   problem
 })
 
-export const DELETE_MODAL_PROBLEM = 'DELETE_MODAL_PROBLEM'
-export const deleteModalProblem = problem => ({
-  type: DELETE_MODAL_PROBLEM,
-  problem
+export const OPEN_SECTION_MODAL = 'OPEN_SECTION_MODAL'
+export const openSectionModal = section => ({
+  type: OPEN_SECTION_MODAL,
+  section
+})
+
+export const DELETE_MODAL_ITEM = 'DELETE_MODAL_ITEM'
+export const deleteModalItem = item => ({
+  type: DELETE_MODAL_ITEM,
+  item
 })
 
 export const RESET_STATE = 'RESET_STATE'
@@ -46,4 +52,9 @@ export const resetState = () => ({
 export const BOOTSTRAP_STATE = 'BOOTSTRAP_STATE'
 export const bootstrapState = () => ({
   type: BOOTSTRAP_STATE,
+})
+
+export const CLOSE_MODALS = 'CLOSE_MODALS'
+export const closeModals = () => ({
+  type: CLOSE_MODALS,
 })

@@ -3,6 +3,7 @@ const getDefaultState = () => ({
   problemInputText: '',
   problemGroupSelectionId: '',
   modalProblem: '',
+  modalSection: '',
   section: {
     byId: [],
     allIds: []

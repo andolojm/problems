@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Component from './Component'
-import { openProblemModal } from '../../actions'
+import { openProblemModal, openSectionModal } from '../../actions'
 require('./Section.css')
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onProblemClick: (e) => dispatch(openProblemModal(e))
+  onProblemClick: (e) => dispatch(openProblemModal(e)),
+  onSectionClick: (e) => dispatch(openSectionModal(e))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)
