@@ -1,24 +1,49 @@
+#header {
+  margin-bottom: 25px;
+}
+
 .header-title {
   text-align: right;
   padding: 10px;
   font-size: 210%;
 }
 
-.header-input-group {
-  margin: 0 0 10px 0;
-}
-
 .header-input-group-line {
-  width: 100%;
-  max-width: 300px;
-  margin: 5px auto;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
-.header-input-group-line input,
-.header-input-group-line select {
+.header-input {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: 80%;
+  font-family: 'Arvo';
+  color: #ca3737;
+  text-shadow: 0 2px 0 white;
+  margin: 5px 0 0 0;
+}
+.header-input-2-wide.left {
+  float: left;
+  width: 65%;
+}
+
+.header-input-2-wide.right {
+  float: right;
+  width: 33%;
+}
+
+.header-input-1-wide {
   width: 100%;
 }
 
-.header-input-group-line select {
-  margin-top: 5px;
+.header-transition {
+  transition: height 200ms ease-in;
+  height: 0;
+  overflow: hidden;
 }

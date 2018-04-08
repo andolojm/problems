@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import Component from './Component'
 import { resetState, bootstrapState } from '../../actions'
+require('./DevUtils.css')
 
 const mapStateToProps = (state, ownProps) => ({})
 

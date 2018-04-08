@@ -9,9 +9,11 @@ export default ({section, problems, onProblemClick, onSectionClick}) => (
     </h2>
     <div className="section-problems">
       {problems.map(it => (
-        <Button key={it.id} actionId={it.id} onButtonClick={(e) => onProblemClick(e)}>
-          {it.text}
-        </Button>
+        <div className="section-problem-button">
+          <Button key={it.id} actionId={it.id} onButtonClick={(e) => onProblemClick(e)}>
+            {it.text}
+          </Button>
+        </div>
       ))}
     </div>
   </div>

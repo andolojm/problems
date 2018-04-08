@@ -77,10 +77,12 @@ export default (state = StateManager.getState(), action) => {
     case TOGGLE_HEADER_PROBLEM: 
       return Object.assign({}, state, {
         problemExpanded: true,
+        sectionExpanded: false,
       })
     case TOGGLE_HEADER_SECTION:
       return Object.assign({}, state, {
         sectionExpanded: true,
+        problemExpanded: false,
       })
     case RESET_STATE:
       return StateManager.getNullState()
