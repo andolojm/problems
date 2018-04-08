@@ -58,3 +58,13 @@ export const CLOSE_MODALS = 'CLOSE_MODALS'
 export const closeModals = () => ({
   type: CLOSE_MODALS,
 })
+
+export const TOGGLE_HEADER_PROBLEM = 'TOGGLE_HEADER_PROBLEM'
+export const toggleHeaderProblem = () => ({
+  type: TOGGLE_HEADER_PROBLEM,
+})
+
+export const TOGGLE_HEADER_SECTION = 'TOGGLE_HEADER_SECTION'
+export const toggleHeaderSection = () => ({
+  type: TOGGLE_HEADER_SECTION,
+})

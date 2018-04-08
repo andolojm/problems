@@ -2,7 +2,8 @@ import { connect } from 'react-redux'
 import Component from './Component'
 import {
   addGroup, addProblem, changeGroupInputText,
-  changeProblemInputText, changeProblemGroupSelection
+  changeProblemInputText, changeProblemGroupSelection,
+  toggleHeaderProblem, toggleHeaderSection
 } from '../../actions'
 require('./Header.css')
 
@@ -10,7 +11,9 @@ const mapStateToProps = (state, ownProps) => ({
   problemText: state.problemInputText,
   groupName: state.groupInputText,
   groupList: state.section.byId,
-  problemGroupSelection: state.problemGroupSelectionId
+  problemGroupSelection: state.problemGroupSelectionId,
+  problemExpanded: state.problemExpanded,
+  sectionExpanded: state.sectionExpanded,
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -19,6 +22,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onProblemTextChange: (value) => dispatch(changeProblemInputText(value)),
   onProblemGroupSelectionChange: (value) => dispatch(changeProblemGroupSelection(value)),
   onGroupTextChange: (value) => dispatch(changeGroupInputText(value)),
+  onToggleSection: () => dispatch(toggleHeaderSection()),
+  onToggleProblem: () => dispatch(toggleHeaderProblem()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

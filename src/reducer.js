@@ -3,7 +3,9 @@ import {
   CHANGE_PROBLEM_INPUT_TEXT, OPEN_PROBLEM_MODAL,
   CHANGE_PROBLEM_GROUP_SELECTION, OPEN_SECTION_MODAL,
   DELETE_MODAL_ITEM, RESET_STATE, BOOTSTRAP_STATE,
-  CLOSE_MODALS
+  CLOSE_MODALS,
+  TOGGLE_HEADER_PROBLEM,
+  TOGGLE_HEADER_SECTION
 } from './actions'
 import StateManager from './state'
 
@@ -12,6 +14,7 @@ export default (state = StateManager.getState(), action) => {
     case ADD_GROUP:
       const newSectionId = StateManager.generateStateId(state, "section")
       return Object.assign({}, state, {
+        sectionExpanded: false,
         problemGroupSelectionId: (state.section.allIds.length > 0
           ? state.problemGroupSelectionId
           : newSectionId),
@@ -31,6 +34,7 @@ export default (state = StateManager.getState(), action) => {
         .problems.push(newProblemId)
 
       return Object.assign({}, state, {
+        problemExpanded: false,
         problem: {
           allIds: [...state.problem.allIds, newProblemId],
           byId: [...state.problem.byId, {
@@ -70,6 +74,14 @@ export default (state = StateManager.getState(), action) => {
       } else {
         return getStateWithoutSection(state, action.item)
       }
+    case TOGGLE_HEADER_PROBLEM: 
+      return Object.assign({}, state, {
+        problemExpanded: true,
+      })
+    case TOGGLE_HEADER_SECTION:
+      return Object.assign({}, state, {
+        sectionExpanded: true,
+      })
     case RESET_STATE:
       return StateManager.getNullState()
     case BOOTSTRAP_STATE:

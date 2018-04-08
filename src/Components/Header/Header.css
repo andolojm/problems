@@ -5,13 +5,13 @@
 }
 
 .header-input-group {
-  margin: 25px 0;
+  margin: 0 0 10px 0;
 }
 
 .header-input-group-line {
   width: 100%;
   max-width: 300px;
-  margin: auto;
+  margin: 5px auto;
 }
 
 .header-input-group-line input,

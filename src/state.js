@@ -4,6 +4,8 @@ const getDefaultState = () => ({
   problemGroupSelectionId: '',
   modalProblem: '',
   modalSection: '',
+  sectionExpanded: false,
+  problemExpanded: false,
   section: {
     byId: [],
     allIds: []
