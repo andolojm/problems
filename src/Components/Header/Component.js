@@ -1,6 +1,7 @@
 import React from 'react'
 import Transition from 'react-transition-group/Transition'
 import Button from '../Button/Button'
+import img from './check-mark.png'
 
 const transitionStyles = {
   entering: { height: 0 },
@@ -20,6 +21,7 @@ export default ({
     <div>
       <h1 className="header-title">Problems</h1>
     </div>
+    <img src={img} alt="Check Mark Logo" id="header-img" />
     <div className="header-input-group">
       <Transition in={problemExpanded} classNames="header-input" timeout={200}>
         {state => (

@@ -22,19 +22,29 @@ const getBootstrappedState = () => {
   state.problemGroupSelectionId = 'section1'
   state.section = {
     byId: [
-      { id: 'section1', name: 'General', problems: ['problem1', 'problem2']},
-      { id: 'section2', name: 'Work', problems: ['problem3']},
-      { id: 'section3', name: 'Home', problems: []},
+      { id: 'section1', name: 'General',
+          problems: ['problem1', 'problem2']},
+      { id: 'section2', name: 'Work',
+          problems: ['problem3', 'problem4', 'problem6', 'problem7']},
+      { id: 'section3', name: 'Home',
+          problems: ['problem5']},
+      { id: 'section4', name: 'Holidays',
+          problems: []},
     ],
-    allIds: ['section1', 'section2', 'section3']
+    allIds: ['section1', 'section2', 'section3', 'section4']
   }
   state.problem = {
     byId: [
       { id: 'problem1', text: 'My taxes are overdue' },
       { id: 'problem2', text: 'Grandma needs her PC fixed' },
-      { id: 'problem3', text: 'I have not been able to innovate' }
+      { id: 'problem3', text: 'I have not been able to innovate' },
+      { id: 'problem4', text: 'My stapler has gone missing' },
+      { id: 'problem5', text: 'Cat chewed through speaker wire' },
+      { id: 'problem6', text: 'I don\'t know how to tie a tie' },
+      { id: 'problem7', text: 'Y2K broke the coffee machine' }
     ],
-    allIds: ['problem1', 'problem2', 'problem3']
+    allIds: ['problem1', 'problem2', 'problem3', 'problem4',
+        'problem5', 'problem6', 'problem7']
   }
 
   return state

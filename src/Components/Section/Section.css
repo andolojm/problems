@@ -1,14 +1,14 @@
 .section {
-  margin-bottom: 25px;
-}
-
-.section-top-hr {
-  width: 150px;
-  margin: auto;
+  background-color: #fcfcfc;
+  width: 90%;
+  margin: 15px auto;
+  padding: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
 }
 
 .section-header {
-  margin: 10px 0 10px 10px;
+  margin: 0 0 10px 5px;
   font-size: 180%;
 }
 
