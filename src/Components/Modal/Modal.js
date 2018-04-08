@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
       it => it.id === state.modalSection)
   } else {
     problem = state.problem.byId.find(
-      it => it.id === state.modalProblem),
+      it => it.id === state.modalProblem)
     section = state.section.byId.find(
       it => it.problems.includes(state.modalProblem))
   }
