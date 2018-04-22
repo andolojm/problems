@@ -1,0 +1,18 @@
+language: node_js
+node_js: '8'
+cache: yarn
+install:
+- yarn install
+- echo 'Total node_modules dependencies:'$(ls node_modules | wc -l)
+script: yarn build
+deploy:
+  provider: s3
+  access_key_id: AKIAIM5F5XBBZVRZEVXA
+  secret_access_key:
+    secure: aTOPIeQOeMgoAUJvX1LxodmcCdx71Q7YElDUPzEPPTlBuLLBP7qxf90gZhCo7OqF93pd+QABUGxim/YTZnMnCgFs7wCrhAoPSudnhAK3REuK5f4919gRMyKDuQdHxXqzROSAhsUiRdR0D828SGKU27JlQR4+L9bqKQpQUV5KIkJ4VUzWyBSIOP987fPLvkUZcir+JXAgXDYBfgtcZBGyrBnVdKPf0ZenJ8ftNBUbh9a0H9/9vkalp4cvxM4S6yHKcH6humFkVNKlehgUY5bE2RPc5NXl5NbeODUeyaM3VMszfJRND+0mUdFAmXcNAeUtH1CD+Qd1p5wGNGBzjZ901km6gm/4A2E/oW1eUkqfADXFKCc1BIVkJtZe08nf7n7N/gXPMHaQ4ZjAo/tvKUTP+TdGSa0xjXDehlwWytyXOmbYH9jLzroI7sYLyhZduAfHlPhwkJHjDxJoz1ipfd2xyJQ8vGdVLBO3OtzUHN/FiZ2lwrPnsLV3ISoxBwY4/LMvr6ZQp6aIuTxn2qstuWs2YEcUvfKvWw9Su7JxfFTiiUzbU/FjwDVm+qqUoQVJ67BnH7BGnytg2Ayp8eHKxVyh2n0PcqIcPBiLWItCRlbD0oLgoS782+Hqi4Als5fgIbdyzgxlP2BZc16lOU2FyIwl+xL8lHQXM1gu2XcgjNPGkjY=
+  bucket: problems-asaur-us
+  local-dir: build
+  skip_cleanup: true
+  acl: public_read
+  on:
+    repo: andolojm/problems
