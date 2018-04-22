@@ -1,9 +1,9 @@
 {
   "short_name": "Problems",
-  "name": "Problems - The To-Do list for problem solvers",
+  "name": "Problems - To-Do's for problem solvers",
   "icons": [{
-    "src": "check-mark-192.jpg",
-    "type": "image/jpg",
+    "src": "check-mark-192.png",
+    "type": "image/png",
     "sizes": "192x192"
   }],
   "start_url": "./index.html",
