@@ -9,6 +9,6 @@ export default () => (
     <Header />
     <SectionContainer />
     <Modal />
-    <DevUtils />
+    {(process.env.NODE_ENV === 'development') && (<DevUtils />)}
   </div>
 )
