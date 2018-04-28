@@ -3,7 +3,7 @@ import Component from './Component'
 import {
   addGroup, addProblem, changeGroupInputText,
   changeProblemInputText, changeProblemGroupSelection,
-  toggleHeaderProblem, toggleHeaderSection
+  toggleHeaderProblem, toggleHeaderSection, cancelHeaderSubmission
 } from '../../actions'
 require('./Header.css')
 
@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onGroupTextChange: (value) => dispatch(changeGroupInputText(value)),
   onToggleSection: () => dispatch(toggleHeaderSection()),
   onToggleProblem: () => dispatch(toggleHeaderProblem()),
+  onCancelSubmission: () => dispatch(cancelHeaderSubmission()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

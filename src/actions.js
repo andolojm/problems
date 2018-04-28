@@ -68,3 +68,8 @@ export const TOGGLE_HEADER_SECTION = 'TOGGLE_HEADER_SECTION'
 export const toggleHeaderSection = () => ({
   type: TOGGLE_HEADER_SECTION,
 })
+
+export const CANCEL_HEADER_SUBMISSION = 'CANCEL_HEADER_SUBMISSION'
+export const cancelHeaderSubmission = () => ({
+  type: CANCEL_HEADER_SUBMISSION,
+})

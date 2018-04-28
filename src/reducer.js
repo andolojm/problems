@@ -3,9 +3,8 @@ import {
   CHANGE_PROBLEM_INPUT_TEXT, OPEN_PROBLEM_MODAL,
   CHANGE_PROBLEM_GROUP_SELECTION, OPEN_SECTION_MODAL,
   DELETE_MODAL_ITEM, RESET_STATE, BOOTSTRAP_STATE,
-  CLOSE_MODALS,
-  TOGGLE_HEADER_PROBLEM,
-  TOGGLE_HEADER_SECTION
+  CLOSE_MODALS, TOGGLE_HEADER_PROBLEM, TOGGLE_HEADER_SECTION,
+  CANCEL_HEADER_SUBMISSION,
 } from './actions'
 import StateManager from './state'
 
@@ -82,6 +81,11 @@ export default (state = StateManager.getState(), action) => {
     case TOGGLE_HEADER_SECTION:
       return Object.assign({}, state, {
         sectionExpanded: true,
+        problemExpanded: false,
+      })
+    case CANCEL_HEADER_SUBMISSION:
+      return Object.assign({}, state, {
+        sectionExpanded: false,
         problemExpanded: false,
       })
     case RESET_STATE:

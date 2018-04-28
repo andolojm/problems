@@ -5,7 +5,8 @@ require('./Button.css')
 const mapStateToProps = (state, ownProps) => {
   return ({
     text: ownProps.children,
-    actionId: ownProps.actionId
+    actionId: ownProps.actionId,
+    isStyleOverridden: ownProps.styleOverride || false
   })
 }
 

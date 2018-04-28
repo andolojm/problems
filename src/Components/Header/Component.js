@@ -15,7 +15,7 @@ export default ({
     problemExpanded, sectionExpanded,
     onNewGroupClick, onProblemTextChange, onNewProblemClick,
     onGroupTextChange, onProblemGroupSelectionChange,
-    onToggleSection, onToggleProblem
+    onToggleSection, onToggleProblem, onCancelSubmission
   }) => (
   <div id="header">
     <div>
@@ -46,6 +46,16 @@ export default ({
           Submit new problem
         </Button>
       </div>
+      <Transition in={problemExpanded} classNames="header-input" timeout={200}>
+        {state => (
+          <div className="header-input-group-line header-transition"
+              style={{...transitionStyles[state]}}>
+            <Button styleOverride={true} onButtonClick={onCancelSubmission}>
+              Cancel
+            </Button>
+          </div>
+        )}
+      </Transition>
     </div>
     <div className="header-input-group">
       <Transition in={sectionExpanded} classNames="header-input" timeout={200}>
@@ -64,6 +74,16 @@ export default ({
           Submit new group
         </Button>
       </div>
+      <Transition in={sectionExpanded} classNames="header-input" timeout={200}>
+        {state => (
+          <div className="header-input-group-line header-transition"
+              style={{...transitionStyles[state]}}>
+            <Button styleOverride={true} onButtonClick={onCancelSubmission}>
+              Cancel
+            </Button>
+          </div>
+        )}
+      </Transition>
     </div>
   </div>
 )
