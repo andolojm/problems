@@ -17,12 +17,12 @@ export default ({problem, section, onDeleteClick, onCancelClick}) => {
               `Section: ${section.name}` :
               'Warning: Deleting this section will delete all problems associated with it.'}
           </div>
-          <div className="modal-action-left">
+          <div className="modal-action modal-action-left">
             <Button onButtonClick={onCancelClick}>
               Cancel
             </Button>
           </div>
-          <div className="modal-action-right">
+          <div className="modal-action modal-action-right">
             <Button onButtonClick={() => onDeleteClick(problem ? problem.id : section.id)}>
               {problem ?
                 "Solved!" :

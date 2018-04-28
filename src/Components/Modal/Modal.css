@@ -1,10 +1,9 @@
 #modal {
   box-sizing: border-box;
   position: fixed;
-  top: 50%;
+  top: 33%;
   left: 50%;
   width: 80%;
-  height: 200px;
   margin-left: -40%;
   margin-top: -100px;
   padding: 20px;
@@ -31,15 +30,15 @@
   margin: 15px 0 0 0;
 }
 
+.modal-action {
+  margin-top: 5px;
+  position: float;
+  width: 45%;
+}
+
 .modal-action-left {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: 40%;
+  float: left;
 }
 .modal-action-right {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 40%;
+  float: right;
 }
