@@ -2,6 +2,8 @@
 
 The TODO app for problem solvers.
 
+![Build Status](https://travis-ci.org/andolojm/problems.svg?branch=master)
+
 Currently deployed to:
   - Direct to cloudfront: https://d16y8ndu9ne88s.cloudfront.net/
   - Future URL (Subdomain not yet added to SSL cert): https://problems.asaur.us/
