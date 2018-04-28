@@ -6,7 +6,8 @@ export default ({section, problems, onProblemClick, onSectionClick}) => (
   <div className="section">
     <h2 className="section-header">
       {section.name}
-      <img class="section-hamburger" onClick={() => onSectionClick(section.id)} src={img} />
+      <img class="section-hamburger" alt="Edit Section Menu"
+          onClick={() => onSectionClick(section.id)} src={img} />
     </h2>
     <div className="section-problems">
       {problems.map(it => (
