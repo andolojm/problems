@@ -73,3 +73,19 @@ export const CANCEL_HEADER_SUBMISSION = 'CANCEL_HEADER_SUBMISSION'
 export const cancelHeaderSubmission = () => ({
   type: CANCEL_HEADER_SUBMISSION,
 })
+
+export const SUBMIT_GROUP_TITLE_EDIT = 'SUBMIT_GROUP_TITLE_EDIT'
+export const submitGroupTitleEdit = () => ({
+  type: SUBMIT_GROUP_TITLE_EDIT,
+})
+
+export const CANCEL_GROUP_TITLE_EDIT = 'CANCEL_GROUP_TITLE_EDIT'
+export const cancelGroupTitleEdit = () => ({
+  type: CANCEL_GROUP_TITLE_EDIT,
+})
+
+export const CHANGE_GROUP_EDIT_TEXT = 'CHANGE_GROUP_EDIT_TEXT'
+export const changeGroupEditText = (value) => ({
+  type: CHANGE_GROUP_EDIT_TEXT,
+  value
+})

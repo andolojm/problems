@@ -24,10 +24,11 @@
 
 .modal-header {
   font-size: 140%;
+  margin: 0 0 10px 0;
 }
 
 .modal-content {
-  margin: 15px 0 0 0;
+  margin: 5px 0 0 0;
 }
 
 .modal-action {
@@ -41,4 +42,8 @@
 }
 .modal-action-right {
   float: right;
+}
+
+.modal-close {
+  margin-top: 10px;
 }

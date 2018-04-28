@@ -1,10 +1,12 @@
 const getDefaultState = () => ({
   groupInputText: '',
+  groupEditInputText: '',
   problemInputText: '',
   problemGroupSelectionId: '',
   modalProblem: '',
   modalSection: '',
   sectionExpanded: false,
+  sectionEditExpanded: false,
   problemExpanded: false,
   section: {
     byId: [],

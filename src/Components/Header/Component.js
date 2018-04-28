@@ -22,18 +22,18 @@ export default ({
       <h1 className="header-title">Problems</h1>
     </div>
     <img src={img} alt="Check Mark Logo" id="header-img" />
-    <div className="header-input-group">
-      <Transition in={problemExpanded} classNames="header-input" timeout={200}>
+    <div className="input-group">
+      <Transition in={problemExpanded} classNames="input" timeout={200}>
         {state => (
-          <div className="header-input-group-line header-transition"
+          <div className="input-group-line transition"
               style={{...transitionStyles[state]}}>
             <input type="text" id="problemtext" value={problemInputText}
                 onChange={e => onProblemTextChange(e.target.value)}
-                className="header-input header-input-2-wide left"
+                className="input input-2-wide left"
                 placeholder="Problem text" />
             <select onChange={e => onProblemGroupSelectionChange(e.target.value)}
                 value={problemGroupSelection}
-                className="header-input header-input-2-wide right">
+                className="input input-2-wide right">
               {groupList.map(it => (
                 <option key={it.id} value={it.id}>{it.name}</option>
               ))}
@@ -41,14 +41,14 @@ export default ({
           </div>
         )}
       </Transition>
-      <div className="header-input-group-line">
+      <div className="input-group-line">
         <Button onButtonClick={problemExpanded ? onNewProblemClick : onToggleProblem}>
           Submit new problem
         </Button>
       </div>
-      <Transition in={problemExpanded} classNames="header-input" timeout={200}>
+      <Transition in={problemExpanded} classNames="input" timeout={200}>
         {state => (
-          <div className="header-input-group-line header-transition"
+          <div className="input-group-line transition"
               style={{...transitionStyles[state]}}>
             <Button styleOverride={true} onButtonClick={onCancelSubmission}>
               Cancel
@@ -57,26 +57,26 @@ export default ({
         )}
       </Transition>
     </div>
-    <div className="header-input-group">
-      <Transition in={sectionExpanded} classNames="header-input" timeout={200}>
+    <div className="input-group">
+      <Transition in={sectionExpanded} classNames="input" timeout={200}>
         {state => (
-          <div className="header-input-group-line header-transition"
+          <div className="input-group-line transition"
               style={{...transitionStyles[state]}}>
             <input type="text" id="groupname" value={groupInputText}
                 onChange={e => onGroupTextChange(e.target.value)}
-                className="header-input header-input-1-wide"
+                className="input input-1-wide"
                 placeholder="Group name" />
           </div>
         )}
       </Transition>
-      <div className="header-input-group-line">
+      <div className="input-group-line">
         <Button onButtonClick={sectionExpanded ? onNewGroupClick : onToggleSection}>
           Submit new group
         </Button>
       </div>
-      <Transition in={sectionExpanded} classNames="header-input" timeout={200}>
+      <Transition in={sectionExpanded} classNames="input" timeout={200}>
         {state => (
-          <div className="header-input-group-line header-transition"
+          <div className="input-group-line transition"
               style={{...transitionStyles[state]}}>
             <Button styleOverride={true} onButtonClick={onCancelSubmission}>
               Cancel

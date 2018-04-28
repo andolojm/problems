@@ -4,7 +4,8 @@ import {
   CHANGE_PROBLEM_GROUP_SELECTION, OPEN_SECTION_MODAL,
   DELETE_MODAL_ITEM, RESET_STATE, BOOTSTRAP_STATE,
   CLOSE_MODALS, TOGGLE_HEADER_PROBLEM, TOGGLE_HEADER_SECTION,
-  CANCEL_HEADER_SUBMISSION,
+  CANCEL_HEADER_SUBMISSION, SUBMIT_GROUP_TITLE_EDIT,
+  CHANGE_GROUP_EDIT_TEXT, CANCEL_GROUP_TITLE_EDIT
 } from './actions'
 import StateManager from './state'
 
@@ -87,6 +88,32 @@ export default (state = StateManager.getState(), action) => {
       return Object.assign({}, state, {
         sectionExpanded: false,
         problemExpanded: false,
+      })
+    case CHANGE_GROUP_EDIT_TEXT:
+      return Object.assign({}, state, {
+        groupEditInputText: action.value
+      })
+    case SUBMIT_GROUP_TITLE_EDIT:
+      if(!state.sectionEditExpanded) {
+        return Object.assign({}, state, {
+          sectionEditExpanded: true
+        })
+      } else {
+        return Object.assign({}, state, {
+          sectionEditExpanded: false,
+          section: {
+            allIds: state.section.allIds,
+            byId: state.section.byId.map(it =>
+              (it.id === state.modalSection)
+                ? Object.assign({}, it, {name: state.groupEditInputText})
+                : it
+            )
+          }
+        })
+      }
+    case CANCEL_GROUP_TITLE_EDIT:
+      return Object.assign({}, state, {
+        sectionEditExpanded: false
       })
     case RESET_STATE:
       return StateManager.getNullState()
