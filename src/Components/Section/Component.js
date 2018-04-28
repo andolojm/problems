@@ -1,10 +1,12 @@
 import React from 'react'
 import Button from '../Button/Button'
+import img from './menu.svg'
 
 export default ({section, problems, onProblemClick, onSectionClick}) => (
   <div className="section">
-    <h2 className="section-header" onClick={() => onSectionClick(section.id)}>
+    <h2 className="section-header">
       {section.name}
+      <img class="section-hamburger" onClick={() => onSectionClick(section.id)} src={img} />
     </h2>
     <div className="section-problems">
       {problems.map(it => (

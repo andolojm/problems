@@ -17,3 +17,8 @@
   max-width: 400px;
   margin: auto;
 }
+
+.section-hamburger {
+  height: 35px;
+  float: right;
+}
