@@ -7,16 +7,12 @@
 
 body { /* Font stack (Override me for headers) */
   font-family: 'Arvo', 'Helvetica Neue', 'Arial';
-
-  background: rgb(202,55,55);
-  background: linear-gradient(90deg,
-      rgba(247,247,247,1) 0%,
-      rgba(202,55,55,0.06) 100%);
+  background: #fafafa;
 }
 
 /* Font override: Headings = Bungee, if available */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Bungee';
   letter-spacing: 4px;
-  text-shadow: -1px 2px 0 #ca3737;
+  text-shadow: -1px 2px 0 #F44336;
 }
