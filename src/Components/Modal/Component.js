@@ -1,35 +1,16 @@
 import React from 'react'
-import Button from '../Button/Button'
+import ModalContentGroup from '../ModalContentGroup/ModalContentGroup'
+import ModalContentProblem from '../ModalContentProblem/ModalContentProblem'
 
-export default ({problem, section, onDeleteClick, onCancelClick}) => {
-  if(problem || section) {
+export default ({isProblem, isSection}) => {
+  if(isProblem || isSection) {
     return (
       <div>
         <div id="modal-underlay"></div>
         <div id="modal">
-          <h3 className="modal-header">
-            {problem ?
-              problem.text :
-              section.name}
-          </h3>
-          <div className="modal-content">
-            {problem ?
-              `Section: ${section.name}` :
-              'Warning: Deleting this section will delete all problems associated with it.'}
-          </div>
-          <div className="modal-action modal-action-left">
-            <Button onButtonClick={onCancelClick}>
-              Cancel
-            </Button>
-          </div>
-          <div className="modal-action modal-action-right">
-            <Button onButtonClick={() => onDeleteClick(problem ? problem.id : section.id)}>
-              {problem ?
-                "Solved!" :
-                "DELETE"
-              }
-            </Button>
-          </div>
+          {isProblem ?
+            (<ModalContentProblem />) :
+            (<ModalContentGroup />)}
         </div>
       </div>
     )
