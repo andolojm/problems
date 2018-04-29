@@ -21,9 +21,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     let style = {}
     if(isStyleOverridden) {
       style = {
-        backgroundColor: '#222',
+        backgroundColor: '#333',
         height: '40px',
         margin: 0,
+        border: 0,
+        color: 'white',
       }
     }
   
