@@ -1,5 +1,7 @@
+import React from 'react'
 import { connect } from 'react-redux'
-import Component from './Component'
+import ModalContentGroup from '../ModalContentGroup/ModalContentGroup'
+import ModalContentProblem from '../ModalContentProblem/ModalContentProblem'
 require('./Modal.css')
 
 const mapStateToProps = (state, ownProps) => ({
@@ -9,4 +11,21 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  ({isProblem, isSection}) => {
+    if(isProblem || isSection) {
+      return (
+        <div>
+          <div id="modal-underlay"></div>
+          <div id="modal">
+            {isProblem ?
+              (<ModalContentProblem />) :
+              (<ModalContentGroup />)}
+          </div>
+        </div>
+      )
+    } else {
+      return null
+    }
+  }
+)
