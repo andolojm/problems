@@ -69,7 +69,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         <Transition in={problemExpanded} classNames="input" timeout={200}>
           {state => (
             <div
-              className="input-group-line transition"
+              className="input-group-line height-transition"
               style={{ ...transitionStyles[state] }}
             >
               <input
@@ -106,7 +106,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         <Transition in={problemExpanded} classNames="input" timeout={200}>
           {state => (
             <div
-              className="input-group-line transition"
+              className="input-group-line height-transition"
               style={{ ...transitionStyles[state] }}
             >
               <Button styleOverride={true} onButtonClick={onCancelSubmission}>
@@ -120,7 +120,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         <Transition in={groupExpanded} classNames="input" timeout={200}>
           {state => (
             <div
-              className="input-group-line transition"
+              className="input-group-line height-transition"
               style={{ ...transitionStyles[state] }}
             >
               <input
@@ -144,7 +144,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         <Transition in={groupExpanded} classNames="input" timeout={200}>
           {state => (
             <div
-              className="input-group-line transition"
+              className="input-group-line height-transition"
               style={{ ...transitionStyles[state] }}
             >
               <Button styleOverride={true} onButtonClick={onCancelSubmission}>

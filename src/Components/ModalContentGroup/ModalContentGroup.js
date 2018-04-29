@@ -53,7 +53,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       <div>
         <Transition in={groupEditExpanded} classNames="input" timeout={200}>
           {state => (
-            <div className="transition" style={{ ...transitionStyles[state] }}>
+            <div className="height-transition" style={{ ...transitionStyles[state] }}>
               <input
                 type="text"
                 id="groupname"
@@ -70,7 +70,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Button>
         <Transition in={groupEditExpanded} classNames="input" timeout={200}>
           {state => (
-            <div className="transition" style={{ ...transitionStyles[state] }}>
+            <div className="height-transition" style={{ ...transitionStyles[state] }}>
               <Button styleOverride={true} onButtonClick={onEditCancelClick}>
                 Cancel
               </Button>
@@ -84,7 +84,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Button>
         <Transition in={groupDeleteExpanded} classNames="input" timeout={200}>
           {state => (
-            <div className="transition" style={{ ...transitionStyles[state] }}>
+            <div className="height-transition" style={{ ...transitionStyles[state] }}>
               <Button
                 styleOverride={true}
                 onButtonClick={() => onDeleteCancelClick()}
