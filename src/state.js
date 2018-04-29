@@ -4,12 +4,12 @@ const getDefaultState = () => ({
   problemInputText: "",
   problemGroupSelectionId: "",
   modalProblem: "",
-  modalSection: "",
-  sectionExpanded: false,
-  sectionEditExpanded: false,
-  sectionDeleteExpanded: false,
+  modalGroup: "",
+  groupExpanded: false,
+  groupEditExpanded: false,
+  groupDeleteExpanded: false,
   problemExpanded: false,
-  section: {
+  group: {
     byId: [],
     allIds: []
   },
@@ -22,31 +22,31 @@ const getDefaultState = () => ({
 // Return a sample state for development purposes
 const getBootstrappedState = () => {
   const state = getDefaultState();
-  state.problemGroupSelectionId = "section1";
-  state.section = {
+  state.problemGroupSelectionId = "group1";
+  state.group = {
     byId: [
       {
-        id: "section1",
+        id: "group1",
         name: "General",
         problems: ["problem1", "problem2"]
       },
       {
-        id: "section2",
+        id: "group2",
         name: "Work",
         problems: ["problem3", "problem4", "problem6", "problem7"]
       },
       {
-        id: "section3",
+        id: "group3",
         name: "Home",
         problems: ["problem5"]
       },
       {
-        id: "section4",
+        id: "group4",
         name: "Holidays",
         problems: []
       }
     ],
-    allIds: ["section1", "section2", "section3", "section4"]
+    allIds: ["group1", "group2", "group3", "group4"]
   };
   state.problem = {
     byId: [

@@ -4,13 +4,13 @@ import { deleteModalItem, closeModals } from "../../actions";
 import Button from "../Button/Button";
 require("./ModalContentProblem.css");
 
-/*  Modal currently can display both Problem and Section objects
+/*  Modal currently can display both Problem and Group objects
     Perhaps in the future this could just by fully dynamic:
      - Title, text, leftBtnText, leftBtnAction, rightBtnText, rightBtnAction */
 
 const mapStateToProps = (state, ownProps) => ({
   problem: state.problem.byId.find(it => it.id === state.modalProblem),
-  section: state.section.byId.find(it =>
+  group: state.group.byId.find(it =>
     it.problems.includes(state.modalProblem)
   )
 });
@@ -21,10 +21,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  ({ problem, section, onDeleteClick, onCancelClick }) => (
+  ({ problem, group, onDeleteClick, onCancelClick }) => (
     <div>
       <h3 className="modal-header">{problem.text}</h3>
-      <div className="modal-content">Section: {section.name}</div>
+      <div className="modal-content">Group: {group.name}</div>
       <div className="modal-action modal-action-left">
         <Button onButtonClick={onCancelClick}>Cancel</Button>
       </div>

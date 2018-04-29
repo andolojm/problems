@@ -32,10 +32,10 @@ export const openProblemModal = problem => ({
   problem
 });
 
-export const OPEN_SECTION_MODAL = "OPEN_SECTION_MODAL";
-export const openSectionModal = section => ({
-  type: OPEN_SECTION_MODAL,
-  section
+export const OPEN_GROUP_MODAL = "OPEN_GROUP_MODAL";
+export const openGroupModal = group => ({
+  type: OPEN_GROUP_MODAL,
+  group
 });
 
 export const DELETE_MODAL_ITEM = "DELETE_MODAL_ITEM";
@@ -64,9 +64,9 @@ export const toggleHeaderProblem = () => ({
   type: TOGGLE_HEADER_PROBLEM
 });
 
-export const TOGGLE_HEADER_SECTION = "TOGGLE_HEADER_SECTION";
-export const toggleHeaderSection = () => ({
-  type: TOGGLE_HEADER_SECTION
+export const TOGGLE_HEADER_GROUP = "TOGGLE_HEADER_GROUP";
+export const toggleHeaderGroup = () => ({
+  type: TOGGLE_HEADER_GROUP
 });
 
 export const CANCEL_HEADER_SUBMISSION = "CANCEL_HEADER_SUBMISSION";

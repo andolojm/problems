@@ -13,10 +13,10 @@ import Button from "../Button/Button";
 require("./ModalContentGroup.css");
 
 const mapStateToProps = (state, ownProps) => ({
-  section: state.section.byId.find(it => it.id === state.modalSection),
+  group: state.group.byId.find(it => it.id === state.modalGroup),
   groupEditInputText: state.groupEditInputText,
-  sectionEditExpanded: state.sectionEditExpanded,
-  sectionDeleteExpanded: state.sectionDeleteExpanded
+  groupEditExpanded: state.groupEditExpanded,
+  groupDeleteExpanded: state.groupDeleteExpanded
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -37,10 +37,10 @@ const transitionStyles = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   ({
-    section,
+    group,
     groupEditInputText,
-    sectionEditExpanded,
-    sectionDeleteExpanded,
+    groupEditExpanded,
+    groupDeleteExpanded,
     onDeleteClick,
     onCancelClick,
     onEditCancelClick,
@@ -49,9 +49,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     onDeleteCancelClick
   }) => (
     <div>
-      <h3 className="modal-header">{section.name}</h3>
+      <h3 className="modal-header">{group.name}</h3>
       <div>
-        <Transition in={sectionEditExpanded} classNames="input" timeout={200}>
+        <Transition in={groupEditExpanded} classNames="input" timeout={200}>
           {state => (
             <div className="transition" style={{ ...transitionStyles[state] }}>
               <input
@@ -66,9 +66,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           )}
         </Transition>
         <Button onButtonClick={onEditSubmitClick}>
-          {sectionEditExpanded ? "Save" : "Edit"} Title
+          {groupEditExpanded ? "Save" : "Edit"} Title
         </Button>
-        <Transition in={sectionEditExpanded} classNames="input" timeout={200}>
+        <Transition in={groupEditExpanded} classNames="input" timeout={200}>
           {state => (
             <div className="transition" style={{ ...transitionStyles[state] }}>
               <Button styleOverride={true} onButtonClick={onEditCancelClick}>
@@ -79,10 +79,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Transition>
       </div>
       <div>
-        <Button onButtonClick={() => onDeleteClick(section.id)}>
-          {sectionDeleteExpanded ? "Confirm Deletion" : "Delete"}
+        <Button onButtonClick={() => onDeleteClick(group.id)}>
+          {groupDeleteExpanded ? "Confirm Deletion" : "Delete"}
         </Button>
-        <Transition in={sectionDeleteExpanded} classNames="input" timeout={200}>
+        <Transition in={groupDeleteExpanded} classNames="input" timeout={200}>
           {state => (
             <div className="transition" style={{ ...transitionStyles[state] }}>
               <Button
@@ -95,7 +95,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           )}
         </Transition>
         <div className="modal-content">
-          Warning: Deleting this section will delete all problems associated
+          Warning: Deleting this group will delete all problems associated
           with it.
         </div>
       </div>

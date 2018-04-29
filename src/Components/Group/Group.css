@@ -1,4 +1,4 @@
-.section {
+.group {
   background-color: #EEEEEE;
   width: 90%;
   margin: 15px auto;
@@ -7,18 +7,18 @@
   border-radius: 2px;
 }
 
-.section-header {
+.group-header {
   margin: 3px 0 5px 5px;
   font-size: 160%;
 }
 
-.section-problems {
+.group-problems {
   width: 90%;
   max-width: 400px;
   margin: auto;
 }
 
-.section-hamburger {
+.group-hamburger {
   height: 32px;
   float: right;
 }

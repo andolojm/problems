@@ -8,7 +8,7 @@ import {
   changeProblemInputText,
   changeProblemGroupSelection,
   toggleHeaderProblem,
-  toggleHeaderSection,
+  toggleHeaderGroup,
   cancelHeaderSubmission
 } from "../../actions";
 import Button from "../Button/Button";
@@ -18,10 +18,10 @@ require("./Header.css");
 const mapStateToProps = (state, ownProps) => ({
   problemText: state.problemInputText,
   groupName: state.groupInputText,
-  groupList: state.section.byId,
+  groupList: state.group.byId,
   problemGroupSelection: state.problemGroupSelectionId,
   problemExpanded: state.problemExpanded,
-  sectionExpanded: state.sectionExpanded
+  groupExpanded: state.groupExpanded
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onProblemGroupSelectionChange: value =>
     dispatch(changeProblemGroupSelection(value)),
   onGroupTextChange: value => dispatch(changeGroupInputText(value)),
-  onToggleSection: () => dispatch(toggleHeaderSection()),
+  onToggleGroup: () => dispatch(toggleHeaderGroup()),
   onToggleProblem: () => dispatch(toggleHeaderProblem()),
   onCancelSubmission: () => dispatch(cancelHeaderSubmission())
 });
@@ -50,13 +50,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     groupList,
     problemGroupSelection,
     problemExpanded,
-    sectionExpanded,
+    groupExpanded,
     onNewGroupClick,
     onProblemTextChange,
     onNewProblemClick,
     onGroupTextChange,
     onProblemGroupSelectionChange,
-    onToggleSection,
+    onToggleGroup,
     onToggleProblem,
     onCancelSubmission
   }) => (
@@ -117,7 +117,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Transition>
       </div>
       <div className="input-group">
-        <Transition in={sectionExpanded} classNames="input" timeout={200}>
+        <Transition in={groupExpanded} classNames="input" timeout={200}>
           {state => (
             <div
               className="input-group-line transition"
@@ -136,12 +136,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Transition>
         <div className="input-group-line">
           <Button
-            onButtonClick={sectionExpanded ? onNewGroupClick : onToggleSection}
+            onButtonClick={groupExpanded ? onNewGroupClick : onToggleGroup}
           >
             Submit new group
           </Button>
         </div>
-        <Transition in={sectionExpanded} classNames="input" timeout={200}>
+        <Transition in={groupExpanded} classNames="input" timeout={200}>
           {state => (
             <div
               className="input-group-line transition"

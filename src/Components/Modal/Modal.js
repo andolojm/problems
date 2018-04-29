@@ -6,14 +6,14 @@ require("./Modal.css");
 
 const mapStateToProps = (state, ownProps) => ({
   isProblem: state.modalProblem || false,
-  isSection: state.modalSection || false
+  isGroup: state.modalGroup || false
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  ({ isProblem, isSection }) => {
-    if (isProblem || isSection) {
+  ({ isProblem, isGroup }) => {
+    if (isProblem || isGroup) {
       return (
         <div>
           <div id="modal-underlay" />

@@ -1,39 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
-import { openProblemModal, openSectionModal } from "../../actions";
+import { openProblemModal, openGroupModal } from "../../actions";
 import Button from "../Button/Button";
 import img from "./menu.svg";
-require("./Section.css");
+require("./Group.css");
 
 const mapStateToProps = (state, ownProps) => {
-  const section = state.section.byId.find(it => it.id === ownProps.id);
+  const group = state.group.byId.find(it => it.id === ownProps.id);
   const problems = state.problem.byId.filter(it =>
-    section.problems.includes(it.id)
+    group.problems.includes(it.id)
   );
   return {
-    section,
+    group,
     problems
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onProblemClick: e => dispatch(openProblemModal(e)),
-  onSectionClick: e => dispatch(openSectionModal(e))
+  onGroupClick: e => dispatch(openGroupModal(e))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  ({ section, problems, onProblemClick, onSectionClick }) => (
-    <div className="section">
-      <h2 className="section-header">{section.name}</h2>
+  ({ group, problems, onProblemClick, onGroupClick }) => (
+    <div className="group">
+      <h2 className="group-header">{group.name}</h2>
       <img
-        className="section-hamburger"
-        alt="Edit Section Menu"
-        onClick={() => onSectionClick(section.id)}
+        className="group-hamburger"
+        alt="Edit Group Menu"
+        onClick={() => onGroupClick(group.id)}
         src={img}
       />
-      <div className="section-problems">
+      <div className="group-problems">
         {problems.map(it => (
-          <div key={it.id} className="section-problem-button">
+          <div key={it.id} className="group-problem-button">
             <Button actionId={it.id} onButtonClick={e => onProblemClick(e)}>
               {it.text}
             </Button>

@@ -5,13 +5,13 @@ import {
   CHANGE_PROBLEM_INPUT_TEXT,
   OPEN_PROBLEM_MODAL,
   CHANGE_PROBLEM_GROUP_SELECTION,
-  OPEN_SECTION_MODAL,
+  OPEN_GROUP_MODAL,
   DELETE_MODAL_ITEM,
   RESET_STATE,
   BOOTSTRAP_STATE,
   CLOSE_MODALS,
   TOGGLE_HEADER_PROBLEM,
-  TOGGLE_HEADER_SECTION,
+  TOGGLE_HEADER_GROUP,
   CANCEL_HEADER_SUBMISSION,
   SUBMIT_GROUP_TITLE_EDIT,
   CHANGE_GROUP_EDIT_TEXT,
@@ -23,19 +23,19 @@ import StateManager from "./state";
 export default (state = StateManager.getState(), action) => {
   switch (action.type) {
     case ADD_GROUP:
-      const newSectionId = StateManager.generateStateId(state, "section");
+      const newGroupId = StateManager.generateStateId(state, "group");
       return Object.assign({}, state, {
-        sectionExpanded: false,
+        groupExpanded: false,
         problemGroupSelectionId:
-          state.section.allIds.length > 0
+          state.group.allIds.length > 0
             ? state.problemGroupSelectionId
-            : newSectionId,
-        section: {
-          allIds: [...state.section.allIds, newSectionId],
+            : newGroupId,
+        group: {
+          allIds: [...state.group.allIds, newGroupId],
           byId: [
-            ...state.section.byId,
+            ...state.group.byId,
             {
-              id: newSectionId,
+              id: newGroupId,
               name: state.groupInputText,
               problems: []
             }
@@ -44,7 +44,7 @@ export default (state = StateManager.getState(), action) => {
       });
     case ADD_PROBLEM:
       const newProblemId = StateManager.generateStateId(state, "problem");
-      state.section.byId
+      state.group.byId
         .find(it => it.id === state.problemGroupSelectionId)
         .problems.push(newProblemId);
 
@@ -77,43 +77,43 @@ export default (state = StateManager.getState(), action) => {
       return Object.assign({}, state, {
         modalProblem: action.problem
       });
-    case OPEN_SECTION_MODAL:
+    case OPEN_GROUP_MODAL:
       return Object.assign({}, state, {
-        modalSection: action.section
+        modalGroup: action.group
       });
     case CLOSE_MODALS:
       return Object.assign({}, state, {
-        modalSection: "",
+        modalGroup: "",
         modalProblem: "",
-        sectionEditExpanded: false,
-        sectionDeleteExpanded: false
+        groupEditExpanded: false,
+        groupDeleteExpanded: false
       });
     case DELETE_MODAL_ITEM:
       if (action.item.includes("problem")) {
         return getStateWithoutProblem(state, action.item);
       } else {
-        if (state.sectionDeleteExpanded) {
-          return getStateWithoutSection(state, action.item);
+        if (state.groupDeleteExpanded) {
+          return getStateWithoutGroup(state, action.item);
         } else {
           return Object.assign({}, state, {
-            sectionDeleteExpanded: true,
-            sectionEditExpanded: false
+            groupDeleteExpanded: true,
+            groupEditExpanded: false
           });
         }
       }
     case TOGGLE_HEADER_PROBLEM:
       return Object.assign({}, state, {
         problemExpanded: true,
-        sectionExpanded: false
+        groupExpanded: false
       });
-    case TOGGLE_HEADER_SECTION:
+    case TOGGLE_HEADER_GROUP:
       return Object.assign({}, state, {
-        sectionExpanded: true,
+        groupExpanded: true,
         problemExpanded: false
       });
     case CANCEL_HEADER_SUBMISSION:
       return Object.assign({}, state, {
-        sectionExpanded: false,
+        groupExpanded: false,
         problemExpanded: false
       });
     case CHANGE_GROUP_EDIT_TEXT:
@@ -121,19 +121,19 @@ export default (state = StateManager.getState(), action) => {
         groupEditInputText: action.value
       });
     case SUBMIT_GROUP_TITLE_EDIT:
-      if (!state.sectionEditExpanded) {
+      if (!state.groupEditExpanded) {
         return Object.assign({}, state, {
-          sectionEditExpanded: true,
-          sectionDeleteExpanded: false
+          groupEditExpanded: true,
+          groupDeleteExpanded: false
         });
       } else {
         return Object.assign({}, state, {
-          sectionEditExpanded: false,
-          section: {
-            allIds: state.section.allIds,
-            byId: state.section.byId.map(
+          groupEditExpanded: false,
+          group: {
+            allIds: state.group.allIds,
+            byId: state.group.byId.map(
               it =>
-                it.id === state.modalSection
+                it.id === state.modalGroup
                   ? Object.assign({}, it, { name: state.groupEditInputText })
                   : it
             )
@@ -142,11 +142,11 @@ export default (state = StateManager.getState(), action) => {
       }
     case CANCEL_GROUP_TITLE_EDIT:
       return Object.assign({}, state, {
-        sectionEditExpanded: false
+        groupEditExpanded: false
       });
     case CANCEL_GROUP_DELETION:
       return Object.assign({}, state, {
-        sectionDeleteExpanded: false
+        groupDeleteExpanded: false
       });
     case RESET_STATE:
       return StateManager.getNullState();
@@ -167,19 +167,19 @@ const getStateWithoutProblem = (state, problem) =>
     }
   });
 
-// Return a version of the state with one section removed
-const getStateWithoutSection = (state, section) => {
-  const problems = state.section.byId.find(it => it.id === section).problems;
+// Return a version of the state with one group removed
+const getStateWithoutGroup = (state, group) => {
+  const problems = state.group.byId.find(it => it.id === group).problems;
   return Object.assign({}, state, {
-    modalSection: "",
-    sectionDeleteExpanded: false,
+    modalGroup: "",
+    groupDeleteExpanded: false,
     problem: {
       allIds: [...state.problem.allIds.filter(it => !problems.includes(it))],
       byId: [...state.problem.byId.filter(it => !problems.includes(it.id))]
     },
-    section: {
-      allIds: [...state.section.allIds.filter(it => it !== state.modalSection)],
-      byId: [...state.section.byId.filter(it => it.id !== state.modalSection)]
+    group: {
+      allIds: [...state.group.allIds.filter(it => it !== state.modalGroup)],
+      byId: [...state.group.byId.filter(it => it.id !== state.modalGroup)]
     }
   });
 };
