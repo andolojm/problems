@@ -1,17 +1,17 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { resetState, bootstrapState } from '../../actions'
-require('./DevUtils.css')
+import React from "react";
+import { connect } from "react-redux";
+import { resetState, bootstrapState } from "../../actions";
+require("./DevUtils.css");
 
-const mapStateToProps = (state, ownProps) => ({})
+const mapStateToProps = (state, ownProps) => ({});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onResetClick: () => dispatch(resetState()),
-  onBootstrapClick: () => dispatch(bootstrapState()),
-})
+  onBootstrapClick: () => dispatch(bootstrapState())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  ({onResetClick, onBootstrapClick}) => (
+  ({ onResetClick, onBootstrapClick }) => (
     <div id="devutils">
       <div>DEV UTILS: </div>
       <div>
@@ -22,4 +22,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       </div>
     </div>
   )
-)
+);

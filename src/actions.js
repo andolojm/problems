@@ -1,96 +1,96 @@
-export const ADD_GROUP = 'ADD_GROUP'
+export const ADD_GROUP = "ADD_GROUP";
 export const addGroup = () => ({
   type: ADD_GROUP
-})
+});
 
-export const ADD_PROBLEM = 'ADD_PROBLEM'
+export const ADD_PROBLEM = "ADD_PROBLEM";
 export const addProblem = () => ({
   type: ADD_PROBLEM
-})
+});
 
-export const CHANGE_PROBLEM_GROUP_SELECTION = 'CHANGE_PROBLEM_GROUP_SELECTION'
+export const CHANGE_PROBLEM_GROUP_SELECTION = "CHANGE_PROBLEM_GROUP_SELECTION";
 export const changeProblemGroupSelection = groupId => ({
   type: CHANGE_PROBLEM_GROUP_SELECTION,
   groupId
-})
+});
 
-export const CHANGE_GROUP_INPUT_TEXT = 'CHANGE_GROUP_INPUT_TEXT'
+export const CHANGE_GROUP_INPUT_TEXT = "CHANGE_GROUP_INPUT_TEXT";
 export const changeGroupInputText = value => ({
   type: CHANGE_GROUP_INPUT_TEXT,
   value
-})
+});
 
-export const CHANGE_PROBLEM_INPUT_TEXT = 'CHANGE_PROBLEM_INPUT_TEXT'
+export const CHANGE_PROBLEM_INPUT_TEXT = "CHANGE_PROBLEM_INPUT_TEXT";
 export const changeProblemInputText = value => ({
   type: CHANGE_PROBLEM_INPUT_TEXT,
   value
-})
+});
 
-export const OPEN_PROBLEM_MODAL = 'OPEN_PROBLEM_MODAL'
+export const OPEN_PROBLEM_MODAL = "OPEN_PROBLEM_MODAL";
 export const openProblemModal = problem => ({
   type: OPEN_PROBLEM_MODAL,
   problem
-})
+});
 
-export const OPEN_SECTION_MODAL = 'OPEN_SECTION_MODAL'
+export const OPEN_SECTION_MODAL = "OPEN_SECTION_MODAL";
 export const openSectionModal = section => ({
   type: OPEN_SECTION_MODAL,
   section
-})
+});
 
-export const DELETE_MODAL_ITEM = 'DELETE_MODAL_ITEM'
+export const DELETE_MODAL_ITEM = "DELETE_MODAL_ITEM";
 export const deleteModalItem = item => ({
   type: DELETE_MODAL_ITEM,
   item
-})
+});
 
-export const RESET_STATE = 'RESET_STATE'
+export const RESET_STATE = "RESET_STATE";
 export const resetState = () => ({
-  type: RESET_STATE,
-})
+  type: RESET_STATE
+});
 
-export const BOOTSTRAP_STATE = 'BOOTSTRAP_STATE'
+export const BOOTSTRAP_STATE = "BOOTSTRAP_STATE";
 export const bootstrapState = () => ({
-  type: BOOTSTRAP_STATE,
-})
+  type: BOOTSTRAP_STATE
+});
 
-export const CLOSE_MODALS = 'CLOSE_MODALS'
+export const CLOSE_MODALS = "CLOSE_MODALS";
 export const closeModals = () => ({
-  type: CLOSE_MODALS,
-})
+  type: CLOSE_MODALS
+});
 
-export const TOGGLE_HEADER_PROBLEM = 'TOGGLE_HEADER_PROBLEM'
+export const TOGGLE_HEADER_PROBLEM = "TOGGLE_HEADER_PROBLEM";
 export const toggleHeaderProblem = () => ({
-  type: TOGGLE_HEADER_PROBLEM,
-})
+  type: TOGGLE_HEADER_PROBLEM
+});
 
-export const TOGGLE_HEADER_SECTION = 'TOGGLE_HEADER_SECTION'
+export const TOGGLE_HEADER_SECTION = "TOGGLE_HEADER_SECTION";
 export const toggleHeaderSection = () => ({
-  type: TOGGLE_HEADER_SECTION,
-})
+  type: TOGGLE_HEADER_SECTION
+});
 
-export const CANCEL_HEADER_SUBMISSION = 'CANCEL_HEADER_SUBMISSION'
+export const CANCEL_HEADER_SUBMISSION = "CANCEL_HEADER_SUBMISSION";
 export const cancelHeaderSubmission = () => ({
-  type: CANCEL_HEADER_SUBMISSION,
-})
+  type: CANCEL_HEADER_SUBMISSION
+});
 
-export const SUBMIT_GROUP_TITLE_EDIT = 'SUBMIT_GROUP_TITLE_EDIT'
+export const SUBMIT_GROUP_TITLE_EDIT = "SUBMIT_GROUP_TITLE_EDIT";
 export const submitGroupTitleEdit = () => ({
-  type: SUBMIT_GROUP_TITLE_EDIT,
-})
+  type: SUBMIT_GROUP_TITLE_EDIT
+});
 
-export const CANCEL_GROUP_TITLE_EDIT = 'CANCEL_GROUP_TITLE_EDIT'
+export const CANCEL_GROUP_TITLE_EDIT = "CANCEL_GROUP_TITLE_EDIT";
 export const cancelGroupTitleEdit = () => ({
-  type: CANCEL_GROUP_TITLE_EDIT,
-})
+  type: CANCEL_GROUP_TITLE_EDIT
+});
 
-export const CHANGE_GROUP_EDIT_TEXT = 'CHANGE_GROUP_EDIT_TEXT'
-export const changeGroupEditText = (value) => ({
+export const CHANGE_GROUP_EDIT_TEXT = "CHANGE_GROUP_EDIT_TEXT";
+export const changeGroupEditText = value => ({
   type: CHANGE_GROUP_EDIT_TEXT,
   value
-})
+});
 
-export const CANCEL_GROUP_DELETION = 'CANCEL_GROUP_DELETION'
+export const CANCEL_GROUP_DELETION = "CANCEL_GROUP_DELETION";
 export const cancelGroupDeletion = () => ({
-  type: CANCEL_GROUP_DELETION,
-})
+  type: CANCEL_GROUP_DELETION
+});
