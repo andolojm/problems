@@ -89,3 +89,8 @@ export const changeGroupEditText = (value) => ({
   type: CHANGE_GROUP_EDIT_TEXT,
   value
 })
+
+export const CANCEL_GROUP_DELETION = 'CANCEL_GROUP_DELETION'
+export const cancelGroupDeletion = () => ({
+  type: CANCEL_GROUP_DELETION,
+})

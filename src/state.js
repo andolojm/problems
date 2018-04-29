@@ -7,6 +7,7 @@ const getDefaultState = () => ({
   modalSection: '',
   sectionExpanded: false,
   sectionEditExpanded: false,
+  sectionDeleteExpanded: false,
   problemExpanded: false,
   section: {
     byId: [],

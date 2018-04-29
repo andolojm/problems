@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Transition from 'react-transition-group/Transition'
 import {
   deleteModalItem, closeModals,
-  changeGroupEditText, submitGroupTitleEdit, cancelGroupTitleEdit
+  changeGroupEditText, submitGroupTitleEdit, cancelGroupTitleEdit, cancelGroupDeletion
 } from '../../actions'
 import Button from '../Button/Button'
 require('./ModalContentGroup.css')
@@ -11,15 +11,17 @@ require('./ModalContentGroup.css')
 const mapStateToProps = (state, ownProps) => ({
   section: state.section.byId.find(it => it.id === state.modalSection),
   groupEditInputText: state.groupEditInputText,
-  sectionEditExpanded: state.sectionEditExpanded
+  sectionEditExpanded: state.sectionEditExpanded,
+  sectionDeleteExpanded: state.sectionDeleteExpanded
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onDeleteClick: (item) => dispatch(deleteModalItem(item)),
+  onDeleteClick: item => dispatch(deleteModalItem(item)),
+  onDeleteCancelClick: () => dispatch(cancelGroupDeletion()),
   onCancelClick: () => dispatch(closeModals()),
   onEditCancelClick: () => dispatch(cancelGroupTitleEdit()),
   onEditSubmitClick: () => dispatch(submitGroupTitleEdit()),
-  onGroupEditTextChange: (text) => dispatch(changeGroupEditText(text)),
+  onGroupEditTextChange: text => dispatch(changeGroupEditText(text)),
 })
 
 const transitionStyles = {
@@ -31,8 +33,9 @@ const transitionStyles = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   ({
-    section, groupEditInputText, sectionEditExpanded, onDeleteClick,
-    onCancelClick, onEditCancelClick, onEditSubmitClick, onGroupEditTextChange
+    section, groupEditInputText, sectionEditExpanded, sectionDeleteExpanded,
+    onDeleteClick, onCancelClick, onEditCancelClick, onEditSubmitClick,
+    onGroupEditTextChange, onDeleteCancelClick
   }) => (
     <div>
       <h3 className="modal-header">
@@ -66,8 +69,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       </div>
       <div>
         <Button onButtonClick={() => onDeleteClick(section.id)}>
-          Delete
+          {sectionDeleteExpanded ? 'Confirm Deletion' : 'Delete'}
         </Button>
+        <Transition in={sectionDeleteExpanded} classNames="input" timeout={200}>
+          {state => (
+            <div className="transition"
+                style={{...transitionStyles[state]}}>
+              <Button styleOverride={true} onButtonClick={() => onDeleteCancelClick()}>
+                Cancel
+              </Button>
+            </div>
+          )}
+        </Transition>
         <div className="modal-content">
           Warning: Deleting this section will delete all problems associated with it.
         </div>

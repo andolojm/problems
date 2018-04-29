@@ -5,7 +5,8 @@ import {
   DELETE_MODAL_ITEM, RESET_STATE, BOOTSTRAP_STATE,
   CLOSE_MODALS, TOGGLE_HEADER_PROBLEM, TOGGLE_HEADER_SECTION,
   CANCEL_HEADER_SUBMISSION, SUBMIT_GROUP_TITLE_EDIT,
-  CHANGE_GROUP_EDIT_TEXT, CANCEL_GROUP_TITLE_EDIT
+  CHANGE_GROUP_EDIT_TEXT, CANCEL_GROUP_TITLE_EDIT,
+  CANCEL_GROUP_DELETION
 } from './actions'
 import StateManager from './state'
 
@@ -72,7 +73,14 @@ export default (state = StateManager.getState(), action) => {
       if(action.item.includes('problem')){
         return getStateWithoutProblem(state, action.item)
       } else {
-        return getStateWithoutSection(state, action.item)
+        if(state.sectionDeleteExpanded) {
+          return getStateWithoutSection(state, action.item)
+        } else {
+          return Object.assign({}, state, {
+            sectionDeleteExpanded: true,
+            sectionEditExpanded: false,
+          })
+        }
       }
     case TOGGLE_HEADER_PROBLEM: 
       return Object.assign({}, state, {
@@ -96,7 +104,8 @@ export default (state = StateManager.getState(), action) => {
     case SUBMIT_GROUP_TITLE_EDIT:
       if(!state.sectionEditExpanded) {
         return Object.assign({}, state, {
-          sectionEditExpanded: true
+          sectionEditExpanded: true,
+          sectionDeleteExpanded: false
         })
       } else {
         return Object.assign({}, state, {
@@ -114,6 +123,10 @@ export default (state = StateManager.getState(), action) => {
     case CANCEL_GROUP_TITLE_EDIT:
       return Object.assign({}, state, {
         sectionEditExpanded: false
+      })
+    case CANCEL_GROUP_DELETION:
+      return Object.assign({}, state, {
+        sectionDeleteExpanded: false
       })
     case RESET_STATE:
       return StateManager.getNullState()
@@ -139,6 +152,7 @@ const getStateWithoutSection = (state, section) => {
   const problems = state.section.byId.find(it => it.id === section).problems
   return Object.assign({}, state, {
     modalSection: '',
+    sectionDeleteExpanded: false,
     problem: {
       allIds: [...state.problem.allIds.filter(it => !problems.includes(it))],
       byId: [...state.problem.byId.filter(it => !problems.includes(it.id))]
