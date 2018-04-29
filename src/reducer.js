@@ -84,7 +84,9 @@ export default (state = StateManager.getState(), action) => {
     case CLOSE_MODALS:
       return Object.assign({}, state, {
         modalSection: "",
-        modalProblem: ""
+        modalProblem: "",
+        sectionEditExpanded: false,
+        sectionDeleteExpanded: false
       });
     case DELETE_MODAL_ITEM:
       if (action.item.includes("problem")) {
