@@ -14,9 +14,10 @@ body { /* Font stack (Override me for headers) */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Bungee';
   letter-spacing: 4px;
-  text-shadow: -1px 2px 0 #F44336;
+  text-shadow: -1px 2px 0 #E57373;
   line-height: 100%;
   display: inline-block;
+  color: #333;
 }
 
 .input-group-line {
@@ -54,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-.transition {
+.height-transition {
   transition: height 200ms ease-in;
   height: 0;
   overflow: hidden;
