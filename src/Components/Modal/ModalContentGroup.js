@@ -9,8 +9,8 @@ import {
   cancelGroupTitleEdit,
   cancelGroupDeletion
 } from "../../actions";
-import Button from "../Button/Button";
-require("./ModalContentGroup.css");
+import Button from "../Button";
+import { ModalHeader, ModalClose, ModalContent } from "./Components";
 
 const mapStateToProps = (state, ownProps) => ({
   group: state.group.byId.find(it => it.id === state.modalGroup),
@@ -35,7 +35,10 @@ const transitionStyles = {
   exited: { height: 0 }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
   ({
     group,
     groupEditInputText,
@@ -49,11 +52,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     onDeleteCancelClick
   }) => (
     <div>
-      <h3 className="modal-header">{group.name}</h3>
+      <ModalHeader>{group.name}</ModalHeader>
       <div>
         <Transition in={groupEditExpanded} classNames="input" timeout={200}>
           {state => (
-            <div className="height-transition" style={{ ...transitionStyles[state] }}>
+            <div
+              className="height-transition"
+              style={{ ...transitionStyles[state] }}
+            >
               <input
                 type="text"
                 id="groupname"
@@ -70,7 +76,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Button>
         <Transition in={groupEditExpanded} classNames="input" timeout={200}>
           {state => (
-            <div className="height-transition" style={{ ...transitionStyles[state] }}>
+            <div
+              className="height-transition"
+              style={{ ...transitionStyles[state] }}
+            >
               <Button styleOverride={true} onButtonClick={onEditCancelClick}>
                 Cancel
               </Button>
@@ -84,7 +93,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         </Button>
         <Transition in={groupDeleteExpanded} classNames="input" timeout={200}>
           {state => (
-            <div className="height-transition" style={{ ...transitionStyles[state] }}>
+            <div
+              className="height-transition"
+              style={{ ...transitionStyles[state] }}
+            >
               <Button
                 styleOverride={true}
                 onButtonClick={() => onDeleteCancelClick()}
@@ -94,14 +106,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             </div>
           )}
         </Transition>
-        <div className="modal-content">
-          Warning: Deleting this group will delete all problems associated
-          with it.
-        </div>
+        <ModalContent>
+          <div><span role="img" aria-label="Warning">☠️</span></div>
+          <div>
+            Deleting this group will delete all problems associated with it.
+          </div>
+        </ModalContent>
       </div>
-      <div className="modal-close">
+      <ModalClose>
         <Button onButtonClick={onCancelClick}>Close</Button>
-      </div>
+      </ModalClose>
     </div>
   )
 );

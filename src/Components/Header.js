@@ -1,6 +1,7 @@
 import React from "react";
 import Transition from "react-transition-group/Transition";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import {
   addGroup,
   addProblem,
@@ -10,10 +11,9 @@ import {
   toggleHeaderProblem,
   toggleHeaderGroup,
   cancelHeaderSubmission
-} from "../../actions";
-import Button from "../Button/Button";
-import img from "./check-mark.png";
-require("./Header.css");
+} from "../actions";
+import Button from "./Button";
+import img from "./ComponentAssets/check-mark.png";
 
 const mapStateToProps = (state, ownProps) => ({
   problemText: state.problemInputText,
@@ -43,7 +43,29 @@ const transitionStyles = {
   exited: { height: 0 }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
+const Header = styled.div`
+  margin-bottom: 25px;
+`;
+
+const HeaderImage = styled.img`
+  position: absolute;
+  top: -10px;
+  left: 25px;
+  width: 100px;
+  transform: rotate(-20deg);
+  z-index: -1;
+`;
+
+const HeaderTitle = styled.h1`
+  float: right;
+  padding: 10px;
+  font-size: 210%;
+`;
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
   ({
     problemInputText,
     groupInputText,
@@ -60,11 +82,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     onToggleProblem,
     onCancelSubmission
   }) => (
-    <div id="header">
+    <Header>
       <div>
-        <h1 className="header-title">Problems</h1>
+        <HeaderTitle>Problems</HeaderTitle>
       </div>
-      <img src={img} alt="Check Mark Logo" id="header-img" />
+      <HeaderImage src={img} alt="Check Mark Logo" />
       <div className="input-group">
         <Transition in={problemExpanded} classNames="input" timeout={200}>
           {state => (
@@ -154,6 +176,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           )}
         </Transition>
       </div>
-    </div>
+    </Header>
   )
 );
