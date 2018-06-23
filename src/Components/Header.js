@@ -88,7 +88,7 @@ export default connect(
       </div>
       <HeaderImage src={img} alt="Check Mark Logo" />
       <div className="input-group">
-        <Transition in={problemExpanded} classNames="input" timeout={200}>
+        <Transition in={problemExpanded} classNames="input" timeout={100}>
           {state => (
             <div
               className="input-group-line height-transition"
@@ -125,7 +125,7 @@ export default connect(
             Submit new problem
           </Button>
         </div>
-        <Transition in={problemExpanded} classNames="input" timeout={200}>
+        <Transition in={problemExpanded} classNames="input" timeout={100}>
           {state => (
             <div
               className="input-group-line height-transition"
@@ -139,7 +139,7 @@ export default connect(
         </Transition>
       </div>
       <div className="input-group">
-        <Transition in={groupExpanded} classNames="input" timeout={200}>
+        <Transition in={groupExpanded} classNames="input" timeout={100}>
           {state => (
             <div
               className="input-group-line height-transition"
@@ -163,7 +163,7 @@ export default connect(
             Submit new group
           </Button>
         </div>
-        <Transition in={groupExpanded} classNames="input" timeout={200}>
+        <Transition in={groupExpanded} classNames="input" timeout={100}>
           {state => (
             <div
               className="input-group-line height-transition"
