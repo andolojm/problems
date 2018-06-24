@@ -128,7 +128,7 @@ export default connect(
         <Transition in={problemExpanded} timeout={100}>
           {state => (
             <div
-              className="input-group-line height-transition"
+              className="height-transition"
               style={{ ...transitionStyles[state] }}
             >
               <Button styleOverride={true} onButtonClick={onCancelSubmission}>

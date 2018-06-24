@@ -53,14 +53,13 @@ export default connect(
   <Group>
     <GroupHeader>{group.name}</GroupHeader>
     <GroupHamburger
-      className="group-hamburger"
       alt="Edit Group Menu"
       onClick={() => onGroupClick(group.id)}
       src={img}
     />
     <GroupProblems>
       {problems.map(it => (
-        <div key={it.id} className="group-problem-button">
+        <div key={it.id}>
           <Button actionId={it.id} onButtonClick={e => onProblemClick(e)}>
             {it.text}
           </Button>

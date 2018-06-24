@@ -55,7 +55,7 @@ export default connect(
     <div>
       <ModalHeader>{group.name}</ModalHeader>
       <div>
-        <Transition in={groupEditExpanded} classNames="input" timeout={100}>
+        <Transition in={groupEditExpanded} timeout={100}>
           {state => (
             <div
               className="height-transition"
@@ -72,7 +72,7 @@ export default connect(
         <Button onButtonClick={onEditSubmitClick}>
           {groupEditExpanded ? "Save" : "Edit"} Title
         </Button>
-        <Transition in={groupEditExpanded} classNames="input" timeout={100}>
+        <Transition in={groupEditExpanded} timeout={100}>
           {state => (
             <div
               className="height-transition"

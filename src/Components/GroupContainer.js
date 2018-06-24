@@ -12,7 +12,7 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(({ groups }) => (
-  <div id="group-container">
+  <div>
     {groups.map(it => <Group key={it.id} id={it.id} />)}
   </div>
 ));
