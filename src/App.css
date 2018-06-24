@@ -20,41 +20,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #333;
 }
 
-.input-group-line {
-  width: 90%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.input {
-  background-color: #FFEBEE;
-  border: none;
-  outline: none;
-  height: 40px;
-  border-radius: 5px;
-  padding: 5px;
-  box-sizing: border-box;
-  font-size: 80%;
-  font-family: 'Arvo';
-  color: #ca3737;
-  text-shadow: 0 2px 0 white;
-  margin: 5px 0 0 0;
-}
-
-.input-2-wide.left {
-  float: left;
-  width: 65%;
-}
-
-.input-2-wide.right {
-  float: right;
-  width: 33%;
-}
-
-.input-1-wide {
-  width: 100%;
-}
-
 .height-transition {
   transition: height 100ms ease-in;
   height: 0;

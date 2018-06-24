@@ -10,6 +10,7 @@ import {
   cancelGroupDeletion
 } from "../../actions";
 import Button from "../Button";
+import Input from "../Input";
 import { ModalHeader, ModalClose, ModalContent } from "./Components";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -60,13 +61,10 @@ export default connect(
               className="height-transition"
               style={{ ...transitionStyles[state] }}
             >
-              <input
-                type="text"
-                id="groupname"
-                value={groupEditInputText}
-                onChange={e => onGroupEditTextChange(e.target.value)}
-                className="input input-1-wide"
-                placeholder="Group name"
+              <Input
+                textPlaceholder="Group name"
+                textValue={groupEditInputText}
+                textOnChange={onGroupEditTextChange}
               />
             </div>
           )}

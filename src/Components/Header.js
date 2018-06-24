@@ -13,6 +13,7 @@ import {
   cancelHeaderSubmission
 } from "../actions";
 import Button from "./Button";
+import Input from "./Input";
 import img from "./ComponentAssets/check-mark.png";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -57,9 +58,17 @@ const HeaderImage = styled.img`
 `;
 
 const HeaderTitle = styled.h1`
-  float: right;
+  width: 100%;
+  text-align: right;
+  box-sizing: border-box;
   padding: 10px;
   font-size: 210%;
+`;
+
+const HeaderButtonLine = styled.div`
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
 `;
 
 export default connect(
@@ -83,40 +92,31 @@ export default connect(
     onCancelSubmission
   }) => (
     <Header>
-      <div>
-        <HeaderTitle>Problems</HeaderTitle>
-      </div>
+      <HeaderTitle>Problems</HeaderTitle>
       <HeaderImage src={img} alt="Check Mark Logo" />
-      <div className="input-group">
-        <Transition in={problemExpanded} classNames="input" timeout={100}>
+      <HeaderButtonLine>
+        <Transition in={problemExpanded} timeout={100}>
           {state => (
             <div
-              className="input-group-line height-transition"
+              className="height-transition"
               style={{ ...transitionStyles[state] }}
             >
-              <input
-                type="text"
-                id="problemtext"
-                value={problemInputText}
-                onChange={e => onProblemTextChange(e.target.value)}
-                className="input input-2-wide left"
-                placeholder="Problem text"
-              />
-              <select
-                onChange={e => onProblemGroupSelectionChange(e.target.value)}
-                value={problemGroupSelection}
-                className="input input-2-wide right"
-              >
-                {groupList.map(it => (
+              <Input
+                textPlaceholder="Problem text"
+                textValue={problemInputText}
+                textOnChange={onProblemTextChange}
+                selectedValue={problemGroupSelection}
+                selectOnChange={onProblemGroupSelectionChange}
+                selectValues={groupList.map(it => (
                   <option key={it.id} value={it.id}>
                     {it.name}
                   </option>
                 ))}
-              </select>
+              />
             </div>
           )}
         </Transition>
-        <div className="input-group-line">
+        <div>
           <Button
             onButtonClick={
               problemExpanded ? onNewProblemClick : onToggleProblem
@@ -125,7 +125,7 @@ export default connect(
             Submit new problem
           </Button>
         </div>
-        <Transition in={problemExpanded} classNames="input" timeout={100}>
+        <Transition in={problemExpanded} timeout={100}>
           {state => (
             <div
               className="input-group-line height-transition"
@@ -137,36 +137,33 @@ export default connect(
             </div>
           )}
         </Transition>
-      </div>
-      <div className="input-group">
-        <Transition in={groupExpanded} classNames="input" timeout={100}>
+      </HeaderButtonLine>
+      <HeaderButtonLine>
+        <Transition in={groupExpanded} timeout={100}>
           {state => (
             <div
-              className="input-group-line height-transition"
+              className="height-transition"
               style={{ ...transitionStyles[state] }}
             >
-              <input
-                type="text"
-                id="groupname"
-                value={groupInputText}
-                onChange={e => onGroupTextChange(e.target.value)}
-                className="input input-1-wide"
-                placeholder="Group name"
+              <Input
+                textPlaceholder="Group name"
+                textValue={groupInputText}
+                textOnChange={onGroupTextChange}
               />
             </div>
           )}
         </Transition>
-        <div className="input-group-line">
+        <div>
           <Button
             onButtonClick={groupExpanded ? onNewGroupClick : onToggleGroup}
           >
             Submit new group
           </Button>
         </div>
-        <Transition in={groupExpanded} classNames="input" timeout={100}>
+        <Transition in={groupExpanded} timeout={100}>
           {state => (
             <div
-              className="input-group-line height-transition"
+              className="height-transition"
               style={{ ...transitionStyles[state] }}
             >
               <Button styleOverride={true} onButtonClick={onCancelSubmission}>
@@ -175,7 +172,7 @@ export default connect(
             </div>
           )}
         </Transition>
-      </div>
+      </HeaderButtonLine>
     </Header>
   )
 );
