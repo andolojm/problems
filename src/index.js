@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Root from "./Components/Root";
 import { createStore } from "redux";
-import reducer from "./reducer";
 import { Provider } from "react-redux";
 import StateManager from "./state";
+import reducer from "./reducer";
+import Root from "./Components/Root";
 require("./App.css");
 
 let store = createStore(reducer);

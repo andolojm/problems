@@ -5,11 +5,6 @@
   margin: 0;
 }
 
-body { /* Font stack (Override me for headers) */
-  font-family: 'Arvo', 'Helvetica Neue', 'Arial';
-  background: #fafafa;
-}
-
 /* Font override: Headings = Bungee, if available */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Bungee';
@@ -25,3 +20,9 @@ h1, h2, h3, h4, h5, h6 {
   height: 0;
   overflow: hidden;
 }
+
+body { /* Font stack (Override me for headers) */
+  font-family: 'Arvo', 'Helvetica Neue', 'Arial';
+  background-image: url('./Components/ComponentAssets/pattern.svg');
+}
+
