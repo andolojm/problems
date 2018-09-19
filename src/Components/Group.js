@@ -6,8 +6,8 @@ import Button from "./Button";
 import img from "./ComponentAssets/menu.svg";
 
 const mapStateToProps = (state, ownProps) => {
-  const group = state.group.byId.find(it => it.id === ownProps.id);
-  const problems = state.problem.byId.filter(it =>
+  const group = state.app.group.byId.find(it => it.id === ownProps.id);
+  const problems = state.app.problem.byId.filter(it =>
     group.problems.includes(it.id)
   );
   return {

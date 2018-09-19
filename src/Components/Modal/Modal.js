@@ -6,8 +6,8 @@ import ModalContentProblem from "./ModalContentProblem";
 import { closeModals } from "../../actions";
 
 const mapStateToProps = (state, ownProps) => ({
-  isProblem: state.modalProblem || false,
-  isGroup: state.modalGroup || false
+  isProblem: state.app.modalProblem || false,
+  isGroup: state.app.modalGroup || false
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

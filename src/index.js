@@ -1,13 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
+import { reducer as formReducer } from "redux-form";
 import StateManager from "./state";
-import reducer from "./reducer";
+import appReducer from "./reducer";
 import Root from "./Components/Root";
 require("./App.css");
 
-let store = createStore(reducer);
+const rootReducer = combineReducers({
+  app: appReducer,
+  form: formReducer
+});
+
+let store = createStore(rootReducer);
 
 store.subscribe(() => {
   StateManager.persistState(store.getState());

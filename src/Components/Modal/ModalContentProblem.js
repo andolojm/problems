@@ -10,8 +10,10 @@ import {
 } from "./Components";
 
 const mapStateToProps = (state, ownProps) => ({
-  problem: state.problem.byId.find(it => it.id === state.modalProblem),
-  group: state.group.byId.find(it => it.problems.includes(state.modalProblem))
+  problem: state.app.problem.byId.find(it => it.id === state.app.modalProblem),
+  group: state.app.group.byId.find(it =>
+    it.problems.includes(state.app.modalProblem)
+  )
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -17,12 +17,12 @@ import Input from "./Input";
 import img from "./ComponentAssets/check-mark.png";
 
 const mapStateToProps = (state, ownProps) => ({
-  problemText: state.problemInputText,
-  groupName: state.groupInputText,
-  groupList: state.group.byId,
-  problemGroupSelection: state.problemGroupSelectionId,
-  problemExpanded: state.problemExpanded,
-  groupExpanded: state.groupExpanded
+  problemText: state.app.problemInputText,
+  groupName: state.app.groupInputText,
+  groupList: state.app.group.byId,
+  problemGroupSelection: state.app.problemGroupSelectionId,
+  problemExpanded: state.app.problemExpanded,
+  groupExpanded: state.app.groupExpanded
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

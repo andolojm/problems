@@ -14,10 +14,10 @@ import Input from "../Input";
 import { ModalHeader, ModalClose, ModalContent } from "./Components";
 
 const mapStateToProps = (state, ownProps) => ({
-  group: state.group.byId.find(it => it.id === state.modalGroup),
-  groupEditInputText: state.groupEditInputText,
-  groupEditExpanded: state.groupEditExpanded,
-  groupDeleteExpanded: state.groupDeleteExpanded
+  group: state.app.group.byId.find(it => it.id === state.app.modalGroup),
+  groupEditInputText: state.app.groupEditInputText,
+  groupEditExpanded: state.app.groupEditExpanded,
+  groupDeleteExpanded: state.app.groupDeleteExpanded
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -105,7 +105,11 @@ export default connect(
           )}
         </Transition>
         <ModalContent>
-          <div><span role="img" aria-label="Warning">☠️</span></div>
+          <div>
+            <span role="img" aria-label="Warning">
+              ☠️
+            </span>
+          </div>
           <div>
             Deleting this group will delete all problems associated with it.
           </div>
