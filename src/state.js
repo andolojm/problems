@@ -52,7 +52,7 @@ const getBootstrappedState = () => {
     byId: [
       { id: "problem1", text: "My taxes are overdue" },
       { id: "problem2", text: "Grandma needs her PC fixed" },
-      { id: "problem3", text: "I have not been able to innovate" },
+      { id: "problem3", text: "Copier smells like burnt plastic" },
       { id: "problem4", text: "My stapler has gone missing" },
       { id: "problem5", text: "Cat chewed through speaker wire" },
       { id: "problem6", text: "I don't know how to tie a tie" },
@@ -74,8 +74,13 @@ const getBootstrappedState = () => {
 
 const retrieveFromLocalStorage = () => {
   try {
-    const state = localStorage.getItem("problems_state");
-    return state ? JSON.parse(state) : undefined;
+    const rawState = localStorage.getItem("problems_state");
+    const jsonState = JSON.parse(rawState);
+    if (jsonState) {
+      return jsonState.app;
+    }
+
+    return undefined;
   } catch (e) {
     console.error("Error retrieving state from localStorage: " + e);
     return undefined;
