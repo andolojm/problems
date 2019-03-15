@@ -1,8 +1,6 @@
 import {
   ADD_GROUP,
   ADD_PROBLEM,
-  CHANGE_GROUP_INPUT_TEXT,
-  CHANGE_PROBLEM_INPUT_TEXT,
   OPEN_PROBLEM_MODAL,
   CHANGE_PROBLEM_GROUP_SELECTION,
   OPEN_GROUP_MODAL,
@@ -14,7 +12,6 @@ import {
   TOGGLE_HEADER_GROUP,
   CANCEL_HEADER_SUBMISSION,
   SUBMIT_GROUP_TITLE_EDIT,
-  CHANGE_GROUP_EDIT_TEXT,
   CANCEL_GROUP_TITLE_EDIT,
   CANCEL_GROUP_DELETION
 } from "./actions";
@@ -36,7 +33,7 @@ export default (state = StateManager.getState(), action) => {
             ...state.group.byId,
             {
               id: newGroupId,
-              name: state.groupInputText,
+              name: action.groupName,
               problems: []
             }
           ]
@@ -56,22 +53,14 @@ export default (state = StateManager.getState(), action) => {
             ...state.problem.byId,
             {
               id: newProblemId,
-              text: state.problemInputText
+              text: action.problemName
             }
           ]
         }
       });
-    case CHANGE_GROUP_INPUT_TEXT:
-      return Object.assign({}, state, {
-        groupInputText: action.value
-      });
     case CHANGE_PROBLEM_GROUP_SELECTION:
       return Object.assign({}, state, {
         problemGroupSelectionId: action.groupId
-      });
-    case CHANGE_PROBLEM_INPUT_TEXT:
-      return Object.assign({}, state, {
-        problemInputText: action.value
       });
     case OPEN_PROBLEM_MODAL:
       return Object.assign({}, state, {
@@ -116,10 +105,6 @@ export default (state = StateManager.getState(), action) => {
         groupExpanded: false,
         problemExpanded: false
       });
-    case CHANGE_GROUP_EDIT_TEXT:
-      return Object.assign({}, state, {
-        groupEditInputText: action.value
-      });
     case SUBMIT_GROUP_TITLE_EDIT:
       if (!state.groupEditExpanded) {
         return Object.assign({}, state, {
@@ -131,11 +116,10 @@ export default (state = StateManager.getState(), action) => {
           groupEditExpanded: false,
           group: {
             allIds: state.group.allIds,
-            byId: state.group.byId.map(
-              it =>
-                it.id === state.modalGroup
-                  ? Object.assign({}, it, { name: state.groupEditInputText })
-                  : it
+            byId: state.group.byId.map(it =>
+              it.id === state.modalGroup
+                ? Object.assign({}, it, { name: action.groupName })
+                : it
             )
           }
         });

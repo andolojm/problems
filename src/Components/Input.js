@@ -10,8 +10,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onTextChange: value => dispatch(ownProps.onTextChange(value)),
-  onSelectChange: value => dispatch(ownProps.SelectChange(value))
+  onTextChange: value => ownProps.onTextChange(value),
+  onSelectChange: value => dispatch(ownProps.onSelectChange(value))
 });
 
 const Input = styled.input`
@@ -49,8 +49,8 @@ export default connect(
     textValue,
     selectValues,
     selectedValue,
-    textOnChange,
-    selectOnChange
+    onTextChange,
+    onSelectChange
   }) =>
     selectedValue ? (
       <div>
@@ -58,10 +58,10 @@ export default connect(
           type="text"
           placeholder={textPlaceholder}
           value={textValue}
-          onChange={e => textOnChange(e.target.value)}
+          onChange={e => onTextChange(e.target.value)}
         />
         <RightInput
-          onChange={e => selectOnChange(e.target.value)}
+          onChange={e => onSelectChange(e.target.value)}
           value={selectedValue}
         >
           {selectValues}
@@ -73,7 +73,7 @@ export default connect(
           type="text"
           placeholder={textPlaceholder}
           value={textValue}
-          onChange={e => textOnChange(e.target.value)}
+          onChange={e => onTextChange(e.target.value)}
         />
       </div>
     )

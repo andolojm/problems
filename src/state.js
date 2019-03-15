@@ -1,7 +1,5 @@
 const getDefaultState = () => ({
-  groupInputText: "",
   groupEditInputText: "",
-  problemInputText: "",
   problemGroupSelectionId: "",
   modalProblem: "",
   modalGroup: "",

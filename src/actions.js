@@ -1,29 +1,19 @@
 export const ADD_GROUP = "ADD_GROUP";
-export const addGroup = () => ({
-  type: ADD_GROUP
+export const addGroup = groupName => ({
+  type: ADD_GROUP,
+  groupName
 });
 
 export const ADD_PROBLEM = "ADD_PROBLEM";
-export const addProblem = () => ({
-  type: ADD_PROBLEM
+export const addProblem = problemName => ({
+  type: ADD_PROBLEM,
+  problemName
 });
 
 export const CHANGE_PROBLEM_GROUP_SELECTION = "CHANGE_PROBLEM_GROUP_SELECTION";
 export const changeProblemGroupSelection = groupId => ({
   type: CHANGE_PROBLEM_GROUP_SELECTION,
   groupId
-});
-
-export const CHANGE_GROUP_INPUT_TEXT = "CHANGE_GROUP_INPUT_TEXT";
-export const changeGroupInputText = value => ({
-  type: CHANGE_GROUP_INPUT_TEXT,
-  value
-});
-
-export const CHANGE_PROBLEM_INPUT_TEXT = "CHANGE_PROBLEM_INPUT_TEXT";
-export const changeProblemInputText = value => ({
-  type: CHANGE_PROBLEM_INPUT_TEXT,
-  value
 });
 
 export const OPEN_PROBLEM_MODAL = "OPEN_PROBLEM_MODAL";
@@ -75,19 +65,14 @@ export const cancelHeaderSubmission = () => ({
 });
 
 export const SUBMIT_GROUP_TITLE_EDIT = "SUBMIT_GROUP_TITLE_EDIT";
-export const submitGroupTitleEdit = () => ({
-  type: SUBMIT_GROUP_TITLE_EDIT
+export const submitGroupTitleEdit = groupName => ({
+  type: SUBMIT_GROUP_TITLE_EDIT,
+  groupName
 });
 
 export const CANCEL_GROUP_TITLE_EDIT = "CANCEL_GROUP_TITLE_EDIT";
 export const cancelGroupTitleEdit = () => ({
   type: CANCEL_GROUP_TITLE_EDIT
-});
-
-export const CHANGE_GROUP_EDIT_TEXT = "CHANGE_GROUP_EDIT_TEXT";
-export const changeGroupEditText = value => ({
-  type: CHANGE_GROUP_EDIT_TEXT,
-  value
 });
 
 export const CANCEL_GROUP_DELETION = "CANCEL_GROUP_DELETION";

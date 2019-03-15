@@ -34,8 +34,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(({ text, actionId, StyledButton, onButtonClick }) => {
-  // "Alt" style to differentiate buttons - In the future, maybe multiple options?
-
   return (
     <StyledButton onClick={() => onButtonClick(actionId)}>{text}</StyledButton>
   );
