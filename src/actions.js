@@ -49,33 +49,8 @@ export const closeModals = () => ({
   type: CLOSE_MODALS
 });
 
-export const TOGGLE_HEADER_PROBLEM = "TOGGLE_HEADER_PROBLEM";
-export const toggleHeaderProblem = () => ({
-  type: TOGGLE_HEADER_PROBLEM
-});
-
-export const TOGGLE_HEADER_GROUP = "TOGGLE_HEADER_GROUP";
-export const toggleHeaderGroup = () => ({
-  type: TOGGLE_HEADER_GROUP
-});
-
-export const CANCEL_HEADER_SUBMISSION = "CANCEL_HEADER_SUBMISSION";
-export const cancelHeaderSubmission = () => ({
-  type: CANCEL_HEADER_SUBMISSION
-});
-
 export const SUBMIT_GROUP_TITLE_EDIT = "SUBMIT_GROUP_TITLE_EDIT";
 export const submitGroupTitleEdit = groupName => ({
   type: SUBMIT_GROUP_TITLE_EDIT,
   groupName
-});
-
-export const CANCEL_GROUP_TITLE_EDIT = "CANCEL_GROUP_TITLE_EDIT";
-export const cancelGroupTitleEdit = () => ({
-  type: CANCEL_GROUP_TITLE_EDIT
-});
-
-export const CANCEL_GROUP_DELETION = "CANCEL_GROUP_DELETION";
-export const cancelGroupDeletion = () => ({
-  type: CANCEL_GROUP_DELETION
 });

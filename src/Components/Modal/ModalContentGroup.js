@@ -1,121 +1,117 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import Transition from "react-transition-group/Transition";
 import {
   deleteModalItem,
   closeModals,
-  submitGroupTitleEdit,
-  cancelGroupTitleEdit,
-  cancelGroupDeletion
+  submitGroupTitleEdit
 } from "../../actions";
 import Button from "../Button";
 import Input from "../Input";
 import { ModalHeader, ModalClose, ModalContent } from "./Components";
 
 const mapStateToProps = (state, ownProps) => ({
-  group: state.app.group.byId.find(it => it.id === state.app.modalGroup),
-  groupEditExpanded: state.app.groupEditExpanded,
-  groupDeleteExpanded: state.app.groupDeleteExpanded
+  group: state.app.group.byId.find(it => it.id === state.app.modalGroup)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onDeleteClick: item => dispatch(deleteModalItem(item)),
-  onDeleteCancelClick: () => dispatch(cancelGroupDeletion()),
   onCancelClick: () => dispatch(closeModals()),
-  onEditCancelClick: () => dispatch(cancelGroupTitleEdit()),
   onEditSubmitClick: value => dispatch(submitGroupTitleEdit(value))
 });
-
-const transitionStyles = {
-  entering: { height: 0 },
-  entered: { height: "45px" },
-  exiting: { height: "45px" },
-  exited: { height: 0 }
-};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(
-  ({
-    group,
-    groupEditExpanded,
-    groupDeleteExpanded,
-    onDeleteClick,
-    onCancelClick,
-    onEditCancelClick,
-    onEditSubmitClick,
-    onDeleteCancelClick
-  }) => {
-    const [groupNameTextValue, groupNameTextSetter] = useState("");
-    return (
+)(({ group, onDeleteClick, onCancelClick, onEditSubmitClick }) => {
+  const [groupNameTextValue, groupNameTextSetter] = useState("");
+  const [groupEditExpanded, groupEditExpandedSetter] = useState(false);
+  const [groupDeleteExpanded, groupDeleteExpandedSetter] = useState(false);
+
+  return (
+    <div>
+      <ModalHeader>{group.name}</ModalHeader>
       <div>
-        <ModalHeader>{group.name}</ModalHeader>
-        <div>
-          <Transition in={groupEditExpanded} timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Input
-                  textPlaceholder="Group name"
-                  textValue={groupNameTextValue}
-                  onTextChange={groupNameTextSetter}
-                />
-              </div>
-            )}
-          </Transition>
-          <Button onButtonClick={() => onEditSubmitClick(groupNameTextValue)}>
-            {groupEditExpanded ? "Save" : "Edit"} Title
-          </Button>
-          <Transition in={groupEditExpanded} timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Button styleOverride={true} onButtonClick={onEditCancelClick}>
-                  Cancel
-                </Button>
-              </div>
-            )}
-          </Transition>
+        <div
+          className={`height-transition${
+            groupEditExpanded ? " height-transition-opened" : ""
+          }`}
+        >
+          <Input
+            textPlaceholder="Group name"
+            textValue={groupNameTextValue}
+            onTextChange={groupNameTextSetter}
+          />
         </div>
-        <div>
-          <Button onButtonClick={() => onDeleteClick(group.id)}>
-            {groupDeleteExpanded ? "Confirm Deletion" : "Delete"}
+        <Button
+          onButtonClick={ groupEditExpanded
+              ? () => {
+                onEditSubmitClick(groupNameTextValue);
+                groupDeleteExpandedSetter(false);
+                groupEditExpandedSetter(false);
+              }
+              : () => {
+                groupDeleteExpandedSetter(false);
+                groupEditExpandedSetter(true);
+              }
+          }
+        >
+          {groupEditExpanded ? "Save" : "Edit"} Title
+        </Button>
+        <div
+          className={`height-transition${
+            groupEditExpanded ? " height-transition-opened" : ""
+          }`}
+        >
+          <Button
+            styleOverride={true}
+            onButtonClick={() => groupEditExpandedSetter(false)}
+          >
+            Cancel
           </Button>
-          <Transition in={groupDeleteExpanded} classNames="input" timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Button
-                  styleOverride={true}
-                  onButtonClick={() => onDeleteCancelClick()}
-                >
-                  Cancel
-                </Button>
-              </div>
-            )}
-          </Transition>
-          <ModalContent>
-            <div>
-              <span role="img" aria-label="Warning">
-                ☠️
-              </span>
-            </div>
-            <div>
-              Deleting this group will delete all problems associated with it.
-            </div>
-          </ModalContent>
         </div>
-        <ModalClose>
-          <Button onButtonClick={onCancelClick}>Close</Button>
-        </ModalClose>
       </div>
-    );
-  }
-);
+      <div>
+        <Button
+          onButtonClick={ groupDeleteExpanded
+              ? () => {
+                onDeleteClick(group.id);
+                groupDeleteExpandedSetter(false);
+                groupEditExpandedSetter(false);
+              }
+              : () => {
+                groupDeleteExpandedSetter(true);
+                groupEditExpandedSetter(false);
+              }
+          }
+        >
+          {groupDeleteExpanded ? "Confirm Deletion" : "Delete"}
+        </Button>
+        <div
+          className={`height-transition${
+            groupDeleteExpanded ? " height-transition-opened" : ""
+          }`}
+        >
+          <Button
+            styleOverride={true}
+            onButtonClick={() => groupDeleteExpandedSetter(false)}
+          >
+            Cancel
+          </Button>
+        </div>
+        <ModalContent>
+          <div>
+            <span role="img" aria-label="Warning">
+              ☠️
+            </span>
+          </div>
+          <div>
+            Deleting this group will delete all problems associated with it.
+          </div>
+        </ModalContent>
+      </div>
+      <ModalClose>
+        <Button onButtonClick={onCancelClick}>Close</Button>
+      </ModalClose>
+    </div>
+  );
+});

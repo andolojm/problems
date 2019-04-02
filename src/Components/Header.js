@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import Transition from "react-transition-group/Transition";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import {
-  addGroup,
-  addProblem,
-  changeProblemGroupSelection,
-  toggleHeaderProblem,
-  toggleHeaderGroup,
-  cancelHeaderSubmission
-} from "../actions";
+import { addGroup, addProblem, changeProblemGroupSelection } from "../actions";
 import Button from "./Button";
 import Input from "./Input";
 import img from "./ComponentAssets/check-mark.png";
@@ -17,27 +9,15 @@ import img from "./ComponentAssets/check-mark.png";
 const mapStateToProps = (state, ownProps) => ({
   problemText: state.app.problemInputText,
   groupList: state.app.group.byId,
-  problemGroupSelection: state.app.problemGroupSelectionId,
-  problemExpanded: state.app.problemExpanded,
-  groupExpanded: state.app.groupExpanded
+  problemGroupSelection: state.app.problemGroupSelectionId
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onNewGroupClick: value => dispatch(addGroup(value)),
   onNewProblemClick: value => dispatch(addProblem(value)),
   onProblemGroupSelectionChange: value =>
-    dispatch(changeProblemGroupSelection(value)),
-  onToggleGroup: () => dispatch(toggleHeaderGroup()),
-  onToggleProblem: () => dispatch(toggleHeaderProblem()),
-  onCancelSubmission: () => dispatch(cancelHeaderSubmission())
+    dispatch(changeProblemGroupSelection(value))
 });
-
-const transitionStyles = {
-  entering: { height: 0 },
-  entered: { height: "45px" },
-  exiting: { height: "45px" },
-  exited: { height: 0 }
-};
 
 const Header = styled.div`
   margin-bottom: 25px;
@@ -73,106 +53,109 @@ export default connect(
   ({
     groupList,
     problemGroupSelection,
-    problemExpanded,
-    groupExpanded,
     onNewGroupClick,
     onNewProblemClick,
-    onProblemGroupSelectionChange,
-    onToggleGroup,
-    onToggleProblem,
-    onCancelSubmission
+    onProblemGroupSelectionChange
   }) => {
     const [groupNameTextValue, groupNameTextSetter] = useState("");
     const [problemNameTextValue, problemNameTextSetter] = useState("");
+
+    const [problemExpanded, problemExpandedSetter] = useState(false);
+    const [groupExpanded, groupExpandedSetter] = useState(false);
 
     return (
       <Header>
         <HeaderTitle>Problems</HeaderTitle>
         <HeaderImage src={img} alt="Check Mark Logo" />
         <HeaderButtonLine>
-          <Transition in={problemExpanded} timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Input
-                  textPlaceholder="Problem text"
-                  textValue={problemNameTextValue}
-                  onTextChange={problemNameTextSetter}
-                  selectedValue={problemGroupSelection}
-                  onSelectChange={onProblemGroupSelectionChange}
-                  selectValues={groupList.map(it => (
-                    <option key={it.id} value={it.id}>
-                      {it.name}
-                    </option>
-                  ))}
-                />
-              </div>
-            )}
-          </Transition>
+          <div
+            className={`height-transition${
+              problemExpanded ? " height-transition-opened" : ""
+            }`}
+          >
+            <Input
+              textPlaceholder="Problem text"
+              textValue={problemNameTextValue}
+              onTextChange={problemNameTextSetter}
+              selectedValue={problemGroupSelection}
+              onSelectChange={onProblemGroupSelectionChange}
+              selectValues={groupList.map(it => (
+                <option key={it.id} value={it.id}>
+                  {it.name}
+                </option>
+              ))}
+            />
+          </div>
           <div>
             <Button
-              onButtonClick={
-                problemExpanded
-                  ? () => onNewProblemClick(problemNameTextValue)
-                  : onToggleProblem
+              onButtonClick={ problemExpanded
+                  ? () => {
+                    onNewProblemClick(problemNameTextValue);
+                    problemExpandedSetter(false);
+                  }
+                  : () => {
+                    problemExpandedSetter(true);
+                    groupExpandedSetter(false);
+                  }
               }
             >
               Submit new problem
             </Button>
           </div>
-          <Transition in={problemExpanded} timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Button styleOverride={true} onButtonClick={onCancelSubmission}>
-                  Cancel
-                </Button>
-              </div>
-            )}
-          </Transition>
+          <div
+            className={`height-transition${
+              problemExpanded ? " height-transition-opened" : ""
+            }`}
+          >
+            <Button
+              styleOverride={true}
+              onButtonClick={() => problemExpandedSetter(false)}
+            >
+              Cancel
+            </Button>
+          </div>
         </HeaderButtonLine>
         <HeaderButtonLine>
-          <Transition in={groupExpanded} timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Input
-                  textPlaceholder="Group name"
-                  textValue={groupNameTextValue}
-                  onTextChange={groupNameTextSetter}
-                />
-              </div>
-            )}
-          </Transition>
+          <div
+            className={`height-transition${
+              groupExpanded ? " height-transition-opened" : ""
+            }`}
+          >
+            <Input
+              textPlaceholder="Group name"
+              textValue={groupNameTextValue}
+              onTextChange={groupNameTextSetter}
+            />
+          </div>
           <div>
             <Button
               onButtonClick={
                 groupExpanded
-                  ? () => onNewGroupClick(groupNameTextValue)
-                  : onToggleGroup
+                  ? () => {
+                    onNewGroupClick(groupNameTextValue);
+                    groupExpandedSetter(false);
+                  }
+                  : () => {
+                    groupExpandedSetter(true);
+                    problemExpandedSetter(false);
+                  }
               }
             >
               Submit new group
             </Button>
           </div>
-          <Transition in={groupExpanded} timeout={100}>
-            {state => (
-              <div
-                className="height-transition"
-                style={{ ...transitionStyles[state] }}
-              >
-                <Button styleOverride={true} onButtonClick={onCancelSubmission}>
-                  Cancel
-                </Button>
-              </div>
-            )}
-          </Transition>
+          <div
+            className={`height-transition${
+              groupExpanded ? " height-transition-opened" : ""
+            }`}
+          >
+            <Button
+              styleOverride={true}
+              onButtonClick={() => groupExpandedSetter(false)}
+            >
+              Cancel
+            </Button>
+          </div>
         </HeaderButtonLine>
       </Header>
     );

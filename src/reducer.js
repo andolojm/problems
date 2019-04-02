@@ -8,12 +8,7 @@ import {
   RESET_STATE,
   BOOTSTRAP_STATE,
   CLOSE_MODALS,
-  TOGGLE_HEADER_PROBLEM,
-  TOGGLE_HEADER_GROUP,
-  CANCEL_HEADER_SUBMISSION,
-  SUBMIT_GROUP_TITLE_EDIT,
-  CANCEL_GROUP_TITLE_EDIT,
-  CANCEL_GROUP_DELETION
+  SUBMIT_GROUP_TITLE_EDIT
 } from "./actions";
 import StateManager from "./state";
 
@@ -22,7 +17,6 @@ export default (state = StateManager.getState(), action) => {
     case ADD_GROUP:
       const newGroupId = StateManager.generateStateId(state, "group");
       return Object.assign({}, state, {
-        groupExpanded: false,
         problemGroupSelectionId:
           state.group.allIds.length > 0
             ? state.problemGroupSelectionId
@@ -46,7 +40,6 @@ export default (state = StateManager.getState(), action) => {
         .problems.push(newProblemId);
 
       return Object.assign({}, state, {
-        problemExpanded: false,
         problem: {
           allIds: [...state.problem.allIds, newProblemId],
           byId: [
@@ -73,64 +66,24 @@ export default (state = StateManager.getState(), action) => {
     case CLOSE_MODALS:
       return Object.assign({}, state, {
         modalGroup: "",
-        modalProblem: "",
-        groupEditExpanded: false,
-        groupDeleteExpanded: false
+        modalProblem: ""
       });
     case DELETE_MODAL_ITEM:
       if (action.item.includes("problem")) {
         return getStateWithoutProblem(state, action.item);
       } else {
-        if (state.groupDeleteExpanded) {
-          return getStateWithoutGroup(state, action.item);
-        } else {
-          return Object.assign({}, state, {
-            groupDeleteExpanded: true,
-            groupEditExpanded: false
-          });
-        }
+        return getStateWithoutGroup(state, action.item);
       }
-    case TOGGLE_HEADER_PROBLEM:
-      return Object.assign({}, state, {
-        problemExpanded: true,
-        groupExpanded: false
-      });
-    case TOGGLE_HEADER_GROUP:
-      return Object.assign({}, state, {
-        groupExpanded: true,
-        problemExpanded: false
-      });
-    case CANCEL_HEADER_SUBMISSION:
-      return Object.assign({}, state, {
-        groupExpanded: false,
-        problemExpanded: false
-      });
     case SUBMIT_GROUP_TITLE_EDIT:
-      if (!state.groupEditExpanded) {
-        return Object.assign({}, state, {
-          groupEditExpanded: true,
-          groupDeleteExpanded: false
-        });
-      } else {
-        return Object.assign({}, state, {
-          groupEditExpanded: false,
-          group: {
-            allIds: state.group.allIds,
-            byId: state.group.byId.map(it =>
-              it.id === state.modalGroup
-                ? Object.assign({}, it, { name: action.groupName })
-                : it
-            )
-          }
-        });
-      }
-    case CANCEL_GROUP_TITLE_EDIT:
       return Object.assign({}, state, {
-        groupEditExpanded: false
-      });
-    case CANCEL_GROUP_DELETION:
-      return Object.assign({}, state, {
-        groupDeleteExpanded: false
+        group: {
+          allIds: state.group.allIds,
+          byId: state.group.byId.map(it =>
+            it.id === state.modalGroup
+              ? Object.assign({}, it, { name: action.groupName })
+              : it
+          )
+        }
       });
     case RESET_STATE:
       return StateManager.getNullState();
@@ -156,7 +109,6 @@ const getStateWithoutGroup = (state, group) => {
   const problems = state.group.byId.find(it => it.id === group).problems;
   return Object.assign({}, state, {
     modalGroup: "",
-    groupDeleteExpanded: false,
     problem: {
       allIds: [...state.problem.allIds.filter(it => !problems.includes(it))],
       byId: [...state.problem.byId.filter(it => !problems.includes(it.id))]
