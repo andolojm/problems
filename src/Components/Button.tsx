@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import { RootStateObject } from "../state";
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: RootStateObject, ownProps: any) => {
   return {
     text: ownProps.children,
     actionId: ownProps.actionId,
@@ -10,11 +11,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onButtonClick: e => ownProps.onButtonClick(e)
+const mapDispatchToProps = (dispatch: any, ownProps: { onButtonClick: (arg0: string) => void; }) => ({
+  onButtonClick: (e: string) => ownProps.onButtonClick(e)
 });
 
-const styledButton = alt => styled.button`
+const styledButton = (alt: boolean) => styled.button`
   box-sizing: border-box;
   color: ${alt ? "white" : "#333"};
   background-color: ${alt ? "#333" : "#f8f8f8"};
@@ -30,11 +31,19 @@ const styledButton = alt => styled.button`
   height: ${alt ? "40px" : "inherit"};
 `;
 
+interface ButtonProps {
+  StyledButton: any,
+  onButtonClick: (e: string) => void,
+  actionId: string,
+  text: string
+}
+
+const button = (props: ButtonProps) => 
+  <props.StyledButton onClick={() => props.onButtonClick(props.actionId)}>
+    {props.text}
+  </props.StyledButton>;
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(({ text, actionId, StyledButton, onButtonClick }) => {
-  return (
-    <StyledButton onClick={() => onButtonClick(actionId)}>{text}</StyledButton>
-  );
-});
+)(button);

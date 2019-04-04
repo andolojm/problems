@@ -23,6 +23,11 @@ export interface StateObject {
   problemGroupSelectionId: string
 }
 
+export interface RootStateObject {
+  app: StateObject,
+  form: any
+}
+
 function getDefaultState(): StateObject {
   return {
     problemGroupSelectionId: "",
@@ -120,10 +125,6 @@ const persistToLocalStorage = (state: StateObject) => {
 const persistToServer = (state: StateObject) => {
   // TODO
 };
-
-function isValidStateSegment(object: any): object is StateGroups | StateProblems {
-  return "allIds" in object;
-}
 
 export default {
   getState: () => {

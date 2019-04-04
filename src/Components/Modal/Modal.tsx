@@ -4,17 +4,18 @@ import styled from "styled-components";
 import ModalContentGroup from "./ModalContentGroup";
 import ModalContentProblem from "./ModalContentProblem";
 import { closeModals } from "../../actions";
+import { RootStateObject } from "../../state";
 
-const mapStateToProps = (state, ownProps) => ({
-  isProblem: state.app.modalProblem || false,
-  isGroup: state.app.modalGroup || false
+const mapStateToProps = (state: RootStateObject, ownProps: any) => ({
+  isProblem: !!state.app.modalProblem,
+  isGroup: !!state.app.modalGroup
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: (arg0: (any)) => void, ownProps: any) => ({
   onCancelClick: () => dispatch(closeModals())
 });
 
-const Modal = styled.div`
+const ModalDiv = styled.div`
   box-sizing: border-box;
   position: fixed;
   top: 33%;
@@ -38,20 +39,29 @@ const ModalUnderlay = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
 `;
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(({ isProblem, isGroup, onCancelClick }) => {
-  if (isProblem || isGroup) {
+interface ModalProps {
+  isProblem: boolean,
+  isGroup: boolean, 
+  onCancelClick: () => void
+}
+
+
+const modal = (props: ModalProps) => {
+  if (props.isProblem || props.isGroup) {
     return (
       <div>
-        <ModalUnderlay onClick={onCancelClick} />
-        <Modal>
-          {isProblem ? <ModalContentProblem /> : <ModalContentGroup />}
-        </Modal>
+        <ModalUnderlay onClick={props.onCancelClick} />
+        <ModalDiv>
+          {props.isProblem ? <ModalContentProblem /> : <ModalContentGroup />}
+        </ModalDiv>
       </div>
     );
   } else {
     return null;
   }
-});
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(modal);
