@@ -11,16 +11,23 @@ import {
   SUBMIT_GROUP_TITLE_EDIT
 } from "./actions";
 import StateManager, { StateObject, StateGroup, StateProblem } from "./state";
+import { Reducer } from "redux";
 
 interface Action {
-  type: string,
-  value: string | undefined
+  type: string;
+  value: string | undefined;
 }
 
-function reducer (state = StateManager.getState(), action: Action) {
+const reducer: Reducer<StateObject> = (
+  state: StateObject = StateManager.getState(),
+  action: any
+): StateObject => {
   switch (action.type) {
     case ADD_GROUP:
-      const newGroupId = StateManager.generateStateId(state.group.allIds, "group");
+      const newGroupId = StateManager.generateStateId(
+        state.group.allIds,
+        "group"
+      );
       return Object.assign({}, state, {
         problemGroupSelectionId:
           state.group.allIds.length > 0
@@ -39,23 +46,33 @@ function reducer (state = StateManager.getState(), action: Action) {
         }
       });
     case ADD_PROBLEM:
-      const newProblemId = StateManager.generateStateId(state.problem.allIds, "problem");
-      state.group.byId
-        .find((it: { id: string }) => it.id === state.problemGroupSelectionId)
-        .problems.push(newProblemId);
+      const group = state.group.byId.find(
+        (it: { id: string }) => it.id === state.problemGroupSelectionId
+      );
 
-      return Object.assign({}, state, {
-        problem: {
-          allIds: [...state.problem.allIds, newProblemId],
-          byId: [
-            ...state.problem.byId,
-            {
-              id: newProblemId,
-              text: action.value
-            }
-          ]
-        }
-      });
+      if (group) {
+        const newProblemId = StateManager.generateStateId(
+          state.problem.allIds,
+          "problem"
+        );
+
+        group.problems.push(newProblemId);
+
+        return Object.assign({}, state, {
+          problem: {
+            allIds: [...state.problem.allIds, newProblemId],
+            byId: [
+              ...state.problem.byId,
+              {
+                id: newProblemId,
+                text: action.value
+              }
+            ]
+          }
+        });
+      }
+
+      return state;
     case CHANGE_PROBLEM_GROUP_SELECTION:
       return Object.assign({}, state, {
         problemGroupSelectionId: action.value
@@ -75,14 +92,14 @@ function reducer (state = StateManager.getState(), action: Action) {
       });
     case DELETE_MODAL_ITEM:
       const value: string | undefined = action.value;
-      if(value) {
+      if (value) {
         if (value.includes("problem")) {
           return getStateWithoutProblem(state, value);
         } else {
           return getStateWithoutGroup(state, value);
         }
       }
-      
+
       return state;
     case SUBMIT_GROUP_TITLE_EDIT:
       return Object.assign({}, state, {
@@ -112,20 +129,30 @@ const getStateWithoutProblem = (state: StateObject, problem: string) =>
     modalProblem: "",
     problem: {
       allIds: [...state.problem.allIds.filter(it => it !== state.modalProblem)],
-      byId: [...state.problem.byId.filter((it => it.id !== state.modalProblem))]
+      byId: [...state.problem.byId.filter(it => it.id !== state.modalProblem)]
     }
   });
 
 // Return a version of the state with one group removed
 const getStateWithoutGroup = (state: StateObject, group: string) => {
-  const selectedGroup: StateGroup | undefined = state.group.byId.find(it => it.id === group)
-  
-  if(selectedGroup) {
+  const selectedGroup: StateGroup | undefined = state.group.byId.find(
+    it => it.id === group
+  );
+
+  if (selectedGroup) {
     return Object.assign({}, state, {
       modalGroup: "",
       problem: {
-        allIds: [...state.problem.allIds.filter(it => !selectedGroup.problems.includes(it))],
-        byId: [...state.problem.byId.filter(it => !selectedGroup.problems.includes(it.id))]
+        allIds: [
+          ...state.problem.allIds.filter(
+            it => !selectedGroup.problems.includes(it)
+          )
+        ],
+        byId: [
+          ...state.problem.byId.filter(
+            it => !selectedGroup.problems.includes(it.id)
+          )
+        ]
       },
       group: {
         allIds: [...state.group.allIds.filter(it => it !== state.modalGroup)],
